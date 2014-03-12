@@ -20,7 +20,7 @@ var g = require("gulp-load-plugins")();
 
 var app  = {
 	lessRoot : './dev/less/',
-	buildPath : './build/',
+	buildPath : './dist/',
 	docPath : './dev/doc/'
 };
 
