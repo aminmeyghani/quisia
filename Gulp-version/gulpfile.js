@@ -13,12 +13,14 @@ var path = require('path');
 // var es = require('event-stream');
 // var prefixer = require('gulp-autoprefixer'); //https://github.com/Metrime/gulp-autoprefixer
 // var clean = require('gulp-clean');       //https://github.com/peter-vilja/gulp-clean
+var connect = require('gulp-connect');
 
 var gulp = require("gulp");
 var g = require("gulp-load-plugins")();
 
 
 var app  = {
+	devPath : './dev/',
 	lessRoot : './dev/less/',
 	buildPath : './dist/',
 	docPath : './dev/doc/'
@@ -58,7 +60,8 @@ gulp.task("less-dev", function(){
 	//http://stackoverflow.com/questions/21025995/gulp-less-not-handling-includes-properly
 	.pipe(g.autoprefixer("ff 3.6","opera 9.5", "ie 8", "chrome 5", "ios 3.2", "android 2.1", "safari 3.1"))
 	.pipe(g.rename({suffix: '.dev'}))
-	.pipe(gulp.dest('./dev/css/'));
+	.pipe(gulp.dest('./dev/css/'))
+	.pipe(connect.reload());
 });
 
 
@@ -89,7 +92,7 @@ gulp.task('doc-copy',['doc','doc-concat'], function() {
 
 
 //http://stackoverflow.com/questions/22082641/gulp-watch-not-tasks-not-firing-in-order
-gulp.task('watch', function () {
+gulp.task('watch-less', function () {
 	gulp.watch(app.lessRoot+'*.less', ['less-dev']);
 });
 
@@ -99,6 +102,28 @@ gulp.task('default', ['less-all','doc-all']);
 gulp.task('less-all', ['less-dist','less-dev']);
 gulp.task('doc-all', ['doc','doc-concat', 'doc-copy']);
 
+
+/* Connect + livereload */
+gulp.task('connect', connect.server({
+  root: ['dev'],
+  port: 1337,
+  livereload: true,
+  open: {
+    browser: 'Google Chrome' // if not working OS X browser: 'Google Chrome'
+  }
+}));
+
+gulp.task('html', function () {
+  gulp.src(app.devPath+'**/*.html')
+    .pipe(connect.reload());
+});
+
+gulp.task('watch-connect', function () {
+  gulp.watch([app.devPath+'**/*.html'], ['html']);
+  gulp.watch([app.devPath+'less/*.less'], ['less-dev']);
+});
+
+gulp.task('connect-all', ['connect', 'less-dev', 'watch-connect']);
 
 //-------------
 //ref
