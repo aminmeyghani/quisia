@@ -83,7 +83,7 @@ gulp.task("doc", function(){
 
 gulp.task('doc-copy',['doc','doc-concat'], function() {
 	return gulp.src(app.docPath+'**/', {base: app.docPath})
-	.pipe(gulp.dest('./build/doc/'));
+	.pipe(gulp.dest(app.buildPath+'/doc/'));
 });
 
 
