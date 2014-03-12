@@ -19,7 +19,9 @@ var g = require("gulp-load-plugins")();
 
 
 var app  = {
-	lessRoot : './dev/less/'
+	lessRoot : './dev/less/',
+	buildPath : './build/',
+	docPath : './dev/doc/'
 };
 
 /* LESS Tasks */
@@ -34,19 +36,19 @@ gulp.task("_less", function(){
 	.pipe(g.less({paths: [ path.join(__dirname, 'less', 'includes') ]}))
 	//http://stackoverflow.com/questions/21025995/gulp-less-not-handling-includes-properly
 	.pipe(g.autoprefixer("ff 3.6","opera 9.5", "ie 8", "chrome 5", "ios 3.2", "android 2.1", "safari 3.1"))
-	.pipe(gulp.dest('./public/css'))
+	.pipe(gulp.dest(app.buildPath+'css'))
 	.pipe(g.cssmin({keepBreaks : true}))
 	// .pipe(rename({suffix: '.min'}))
-	.pipe(gulp.dest('./public/css/'));
+	.pipe(gulp.dest(app.buildPath+'css/'));
 });
 //http://stackoverflow.com/questions/21638659/gulp-open-task-doesnt-correctly-execute
 // runs the _less task and minifies the css.
 // less-dist is dependent on the execution of _less.
 gulp.task('less-dist',['_less'], function () {
-	return gulp.src('./public/css/app.css')
+	return gulp.src(app.buildPath+'css/app.css')
 	.pipe(g.cssmin())
 	.pipe(g.rename({suffix: '.min'}))
-	.pipe(gulp.dest('./public/css'));
+	.pipe(gulp.dest(app.buildPath+'css'));
 });
 
 // produces a dev version of the css with a lot of junk from the docs.
@@ -63,23 +65,26 @@ gulp.task("less-dev", function(){
 /* Docs */
 //--------------
 gulp.task("doc-concat", function(){
-  return gulp.src(app.lessRoot+"*.less")
-    .pipe(g.markdox())
-    .pipe(g.concat("less-shell.md"))
-    .pipe(gulp.dest("./doc"));
+	return gulp.src(app.lessRoot+"*.less")
+	.pipe(g.markdox())
+	.pipe(g.concat("less-shell.md"))
+	.pipe(gulp.dest(app.docPath+""));
 });
 
 // Rename each file:
 // http://stackoverflow.com/questions/22123958/failing-to-get-updated-contents-of-a-file-after-gulp-stream-completes
 gulp.task("doc", function(){
- return gulp.src(app.lessRoot+"*.less")
-    .pipe(g.markdox())
-    .pipe(g.rename({extname: '.md'}))
-    .pipe(gulp.dest("./doc/all"));
+	return gulp.src(app.lessRoot+"*.less")
+	.pipe(g.markdox())
+	.pipe(g.rename({extname: '.md'}))
+	.pipe(gulp.dest(app.docPath+"all"));
 });
 
 
-
+gulp.task('doc-copy',['doc','doc-concat'], function() {
+	return gulp.src(app.docPath+'**/', {base: app.docPath})
+	.pipe(gulp.dest('./build/doc/'));
+});
 
 
 
@@ -92,7 +97,7 @@ gulp.task('watch', function () {
 gulp.task('default', ['less-all','doc-all']);
 //http://stackoverflow.com/questions/21638659/gulp-open-task-doesnt-correctly-execute
 gulp.task('less-all', ['less-dist','less-dev']);
-gulp.task('doc-all', ['doc','doc-concat']);
+gulp.task('doc-all', ['doc','doc-concat', 'doc-copy']);
 
 
 //-------------
@@ -107,17 +112,17 @@ gulp.task('doc-all', ['doc','doc-concat']);
 
 //example for renaming all the files
 // gulp.task("rename-doc", ['doc'], function(){
-//  return gulp.src("./doc/*.less")
+//  return gulp.src(app.docPath+"*.less")
 //     .pipe(g.rename({extname: '.md'}))
 //     .pipe(gulp.dest("./doc"));
 // });
 
 // Stanalone cssmin
 // gulp.task('cssmin',['less'], function () {
-// 	gulp.src('./public/css/app.css')
+// 	gulp.src(app.buildPath+'css/app.css')
 // 	.pipe(cssmin())
 // 	.pipe(rename({suffix: '.min'}))
-// 	.pipe(gulp.dest('./public/css/'));
+// 	.pipe(gulp.dest(app.buildPath+'css/'));
 // });
 
 
@@ -127,7 +132,7 @@ gulp.task('doc-all', ['doc','doc-concat']);
 // 	gulp.src('./less/**/*.less')
 // 	.pipe(watch(function(files) {
 // 		return files.pipe(less({paths: [ path.join(__dirname, 'less', 'includes') ]}))
-// 		.pipe(gulp.dest('./public/css'));
+// 		.pipe(gulp.dest(app.buildPath+'css'));
 // 	}));
 // });
 
@@ -136,13 +141,21 @@ gulp.task('doc-all', ['doc','doc-concat']);
 // function doc () {
 // 	return gulp.src("./src/*.less")
 // 	.pipe(markdox())
-// 	.pipe(gulp.dest('./doc/')) ;
+// 	.pipe(gulp.dest(app.docPath+'')) ;
 // }
 
 
 // gulp.task('build-doc', function () {
 // 	return es.merge(doc())
-// 	gulp.src('./doc/*.less')
+// 	gulp.src(app.docPath+'*.less')
 // 	.pipe(concat('all.md'))
-// 	.pipe(gulp.dest('./doc/'))
+// 	.pipe(gulp.dest(app.docPath+''))
+// });
+
+
+//copying
+//http://stackoverflow.com/questions/21224252/looking-for-way-to-copy-files-in-gulp-and-rename-based-on-parent-directory
+// gulp.task('watch-less', function() {
+// gulp.src('./client/src/modules/**/index.js', {base: './client/src/modules'})
+//   .pipe(gulp.dest('./build/public/js/'));
 // });
