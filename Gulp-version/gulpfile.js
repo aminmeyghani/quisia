@@ -15,6 +15,7 @@ var path = require('path');
 // var clean = require('gulp-clean');       //https://github.com/peter-vilja/gulp-clean
 var connect = require('gulp-connect');
 
+
 var gulp = require("gulp");
 var g = require("gulp-load-plugins")();
 
@@ -104,6 +105,7 @@ gulp.task('doc-all', ['doc','doc-concat', 'doc-copy']);
 
 
 /* Connect + livereload */
+//-------------
 gulp.task('connect', connect.server({
   root: ['dev'],
   port: 1337,
@@ -124,6 +126,18 @@ gulp.task('watch-connect', function () {
 });
 
 gulp.task('connect-all', ['connect', 'less-dev', 'watch-connect']);
+
+/* Convert markdown to html */
+//--------------------------
+gulp.task('md-html', function () {
+    gulp.src('./dev/doc/less-shell.md')
+        .pipe(g.markdown())
+        .pipe(gulp.dest('./dev/pages'));
+});
+
+// TODO:
+//serving markdown ... jekyll
+//http://stackoverflow.com/questions/21293999/use-jekyll-with-gulp
 
 //-------------
 //ref
