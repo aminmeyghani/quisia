@@ -2,6 +2,8 @@
 
 <!-- Start /~Amin~/_docs+libs/QUISIA/quisia/Gulp-version/dev/less/app.less -->
 
+# Less Shell Documentation
+
 <!-- End /~Amin~/_docs+libs/QUISIA/quisia/Gulp-version/dev/less/app.less -->
 
 
@@ -9,9 +11,9 @@
 
 <!-- Start /~Amin~/_docs+libs/QUISIA/quisia/Gulp-version/dev/less/components.less -->
 
-# Components #
+# Componentsz #
 
-## Makes a buttion using the `make`
+## btnMaker
 
 ### Usage:
 	.btn2{

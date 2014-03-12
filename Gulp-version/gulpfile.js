@@ -68,11 +68,12 @@ gulp.task("less-dev", function(){
 
 /* Docs */
 //--------------
-gulp.task("doc-concat", function(){
+gulp.task("doc-concat", ['less-dev'], function(){
 	return gulp.src(app.lessRoot+"*.less")
 	.pipe(g.markdox())
 	.pipe(g.concat("less-shell.md"))
-	.pipe(gulp.dest(app.docPath+""));
+	.pipe(gulp.dest(app.docPath+""))
+	.pipe(connect.reload());
 });
 
 // Rename each file:
@@ -116,23 +117,25 @@ gulp.task('connect', connect.server({
 }));
 
 gulp.task('html', function () {
-  gulp.src(app.devPath+'**/*.html')
+  return gulp.src(app.devPath+'**/*.html')
     .pipe(connect.reload());
 });
 
 gulp.task('watch-connect', function () {
   gulp.watch([app.devPath+'**/*.html'], ['html']);
-  gulp.watch([app.devPath+'less/*.less'], ['less-dev']);
+  gulp.watch([app.devPath+'less/*.less'], ['doc-concat']);
+  gulp.watch([app.devPath+'doc/**'], ['md-html']);
 });
 
-gulp.task('connect-all', ['connect', 'less-dev', 'watch-connect']);
+gulp.task('connect-all', ['connect', 'less-dev', 'doc-concat', 'md-html', 'watch-connect']);
 
 /* Convert markdown to html */
 //--------------------------
 gulp.task('md-html', function () {
-    gulp.src('./dev/doc/less-shell.md')
+   return gulp.src('./dev/doc/less-shell.md')
         .pipe(g.markdown())
-        .pipe(gulp.dest('./dev/pages'));
+        .pipe(gulp.dest('./dev/pages'))
+        .pipe(connect.reload());
 });
 
 // TODO:
