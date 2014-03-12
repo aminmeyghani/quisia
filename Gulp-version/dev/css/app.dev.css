@@ -1,0 +1,63 @@
+/*
+# Components #
+*/
+/**
+ ## Makes a buttion using the `make`
+
+### Usage:
+	.btn2{
+	  .btn-maker();
+	}
+@param {String} size of the padding
+@param {non-string} margin value for the bottom of the button.
+@return {none} none
+@api public
+*/
+.btn {
+  padding: 2px;
+  -webkit-transition: all 2s ease-in;
+  transition: all 2s ease-in;
+}
+.car {
+  border: 1px solid #000;
+  color: red;
+}
+.mind {
+  border: 1px solid #000;
+}
+/*
+	# grid #
+*/
+/**
+## Makes a grid
+
+### Usage:
+	.gridmaker{
+	  .btn-maker();
+	}
+@param {String} size of the padding
+@param {non-string} margin value for the bottom of the button.
+@return {none} none
+@api public
+*/
+.grid {
+  padding: 2px;
+}
+/*
+	# mixins #
+*/
+/**
+## general utilities
+
+### Usage:
+	.fix-float{
+	  .fis();
+	}
+@param {String} size of the padding
+@param {non-string} margin value for the bottom of the button.
+@return {none} none
+@api public
+*/
+.fix-float {
+  padding: 2px;
+}
