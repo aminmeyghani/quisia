@@ -1,0 +1,42 @@
+// Colors
+//---------------------
+
+@_color-change-perc : 20%;
+@_color-seed1 : #5EABA6;
+@_color-seed2 : #501ACE;
+
+@_color1 : @_color-seed1;
+@_color1-darker : darken(@_color1, @_color-change-perc);
+@_color1-lighter : lighten(@_color1, @_color-change-perc);
+@_color2 : spin(@_color-seed1, 180);
+@_color2-darker : darken(@_color2, @_color-change-perc);
+@_color2-lighter : lighten(@_color2, @_color-change-perc);
+
+@_color3 : green;
+@_color3-darker : darken(@_color3, @_color-change-perc);
+@_color3-lighter : lighten(@_color3, @_color-change-perc);
+
+//Color Scheme Maker
+//About Colors: http://www.tigercolor.com/color-lab/color-theory/color-harmonies.htm
+@col : #468DB6;			// Base colour
+@comp : spin(@col, 180);  	// Complementary colour
+
+@Col_l1 : lighten(@col, 5%);	// Lighten base
+@Col_l2 : lighten(@col, 10%);
+@Col_l3 : lighten(@col, 15%);
+@Col_l4 : lighten(@col, 20%);
+
+@Col_d1 : darken(@col, 5%);	// Darken base
+@Col_d2 : darken(@col, 10%);
+@Col_d3 : darken(@col, 15%);
+@Col_d4 : darken(@col, 20%);
+
+@Comp_l1 : lighten(@comp, 5%);	// Lighten complementary
+@Comp_l2 : lighten(@comp, 10%);
+@Comp_l3 : lighten(@comp, 15%);
+@Comp_l4 : lighten(@comp, 20%);
+
+@Comp_d1 : darken(@comp, 5%);	// Darken complementary
+@Comp_d2 : darken(@comp, 10%);
+@Comp_d3 : darken(@comp, 15%);
+@Comp_d4 : darken(@comp, 20%);

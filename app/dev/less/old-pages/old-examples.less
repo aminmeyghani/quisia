@@ -1,0 +1,311 @@
+// Chapter 2 examples
+/*
+.border-radius(10px 0 0 0 );
+expects four non-string arguments;
+Similar to border-radius : 10px 0 0 0 but
+prints the result in long-hand for older
+web-kit support.
+*/
+.box0{
+	.border-radius(10px 0 0 0 );
+}
+/*
+	.border-radius("100px",10% , 20% , 30% , 40%);
+	first argument passed as string
+	expects four arguments after
+	sets all the corners to 100px and each value
+	after that sets the ellipse radius to the value
+	clockwise from  top-left to bottom-left.
+*/
+.box1{
+	.border-radius("100px",10% , 20% , 30% , 40%);
+}
+/*
+	.border-radius(20px);
+	is equivalent to the normal border-radius that
+	sets all the corners to 20px;
+	output is the same as: border-radius : 20px;
+*/
+.box2{
+	.border-radius(20px);
+}
+/*
+	.border-radius(20px 5%);
+	arguments separated by a space
+	sets all the corners to 20px
+	and then the ellipse radius to
+	5% for each corner.
+*/
+.box3{
+	.border-radius(20px 5%);
+}
+/*
+	.border-radius("2px", "50px");
+	Expects only two arguments as strings.
+	is equivalent to border-radius : 2px 50px;
+	But the difference is that the output is
+	printed long-hand for maximum compatibility.
+	Notice that both arguments are passed in
+	as strings to avoid mixin overlap and conflict.
+*/
+.box4{
+	.border-radius("2px", "50px");
+}
+/*
+	.border-radius("50%","60%",10%,20%,30%,40%);
+	The first two arguments are passed as strings
+	Expects fours arguments after the first two.
+	sets top-left and bottom-right to 50% and
+	sets top-right and bottom-left to 60% in
+	long-hand form. Then starting from top-left
+	corner and moving clockwise, it  sets the ellipse
+	 radius to 10%,20%,30% and 40%.
+	Notice that the first and second arguments are passed
+	as strings and all the four values are specified.
+*/
+.box5{
+	.border-radius("50%","60%",10%,20%,30%,40%);
+}
+/*
+.border-radius("10px","40px",50%);
+is equivalent to:
+.border-radius("10px","40px",50%,50%,50%,50%);
+	*/
+.box6{
+	.border-radius("10px","40px",50%);
+}
+/*
+._border-radius(10px,"top-left");
+The first argument
+is a value, and then the rest are the  corners
+explicitly passed as strings, in no particular order.
+equivalent to : .border-radius(10px 0 0 0);
+Note the underscore in the mixin definition.
+It makes it identifiable as a helper mixin.
+Directly uses the implementation for the
+border-radius helper.
+*/
+.box7{
+	._border-radius(10px,"top-left");
+}
+/*
+._border-radius(20%,"top-left","bottom-left");
+The first argument
+is a value, and then the rest are the corners explicitly
+passed as strings, in no particular order.
+Equivalent to .border-radius(20% 0 0 20%);
+Note the underscore in the mixin definition.
+It makes it identifiable as a helper mixin.
+Directly uses the implementation for the
+border-radius helper.
+*/
+.box8{
+	._border-radius(20%,"top-left","bottom-left");
+}
+
+// Shape classes using the shapes mixins
+/*
+	Shapes created using the border-radius mixins.
+*/
+
+.shape1{
+	#shapes.pie(100%, "top-left");
+}
+.shape2{
+	#shapes.pie(100%, "top-right");
+}
+.shape3{
+	#shapes.pie(100%, "bottom-right");
+}
+.shape4{
+	#shapes.pie(100%, "bottom-left");
+}
+.shape5{
+	#shapes.clover(100%, "top-left");
+}
+.shape6{
+	#shapes.clover(100%, "top-right");
+}
+.shape7{
+	#shapes.clover(100%, "bottom-right");
+}
+.shape8{
+	#shapes.clover(100%, "bottom-left");
+}
+/****************** AM ****************************
+// box-shadow examples
+**************************************************/
+.box-shadow0{
+	.box-shadow(inner,left);
+}
+.box-shadow1{
+	.box-shadow(inner,right, @blur : 5px);
+}
+.box-shadow2{
+	.box-shadow(inner,bottom, @color : rgba(0,0,0,0.5));
+}
+.box-shadow3{
+	.box-shadow(inner,top, @y: 4px , @blur : 10px);
+}
+
+.box-shadow4{
+	.box-shadow-well(@blur : 10px , @color : rgba(0,0,0,0.5));
+}
+
+.box-shadow5{
+	.box-shadow(outer,left);
+}
+
+.box-shadow6{
+	.box-shadow(outer,right);
+}
+
+.box-shadow7{
+	.box-shadow(outer,bottom);
+}
+
+.box-shadow8{
+	.box-shadow(outer,top);
+}
+
+.box-shadow9{
+	.box-shadow(outer,left);
+	.box-shadow(outer,right);
+}
+
+.box-shadow10{
+	.box-shadow(outer,right, @blur:5px, @color: rgba(0,0,0,0.5));
+	.box-shadow(inner,right, @blur:5px, @color: rgba(0,0,0,0.5));
+
+	.box-shadow(outer,top, @blur:5px, @color: rgba(0,0,0,0.5));
+	.box-shadow(inner,top, @blur:5px, @color: rgba(0,0,0,0.5));
+
+	.box-shadow(outer,left, @blur:5px, @color: rgba(0,0,0,0.5));
+	.box-shadow(inner,left, @blur:5px, @color: rgba(0,0,0,0.5));
+
+	.box-shadow(outer,bottom, @blur:5px, @color: rgba(0,0,0,0.5));
+	.box-shadow(inner,bottom, @blur:5px, @color: rgba(0,0,0,0.5));
+}
+
+.box-shadow11{
+	.box-shadow("0 0 2px 0 #000, inset 0 0 1px 0 #000");
+}
+
+.box-shadow12{
+	.box-shadow(inner,left);
+	.box-shadow("0 0 2px 0 #000, inset 0 0 1px 0 #000");
+}
+
+.box-shadow13{
+	.box-shadow(inner,right,@blur: 10px, @color : rgba(0,0,0,0.5));
+	.box-shadow(outer,right,@blur:10px);
+}
+.box-shadow14{
+	.box-shadow(outer, right,  @color : rgba(0,0,0,0.6), @y:10px, @speed : 1px, @blur:10px);
+}
+.box-shadow15{
+	.box-shadow("0 0 2px 0 #000, inset 0 0 1px 0 #000, 1px 2px 3px 4px rgba(0,0,0,0.4)");
+}
+.box-shadow16{
+	.box-shadow(inner,left);
+	.box-shadow("0px 0px 1px 2px rgba(0,0,0,0.4)");
+}
+.box-shadow17{
+	.box-shadow-well(@color : #000 , @blur : 20px);
+}
+.box-shadow18{
+	.box-shadow(inner,top, @color : rgba(0,0,0,0.2));
+	.box-shadow(inner,left);
+	.box-shadow(outer,right, @blur:5px, @color: rgba(0,0,0,0.5));
+	.box-shadow(inner,right, @blur:20px, @color: rgba(0,0,0,0.5));
+}
+.box-shadow19{
+	.box-shadow(inner,left);
+	.box-shadow(outer,top);
+	.box-shadow("0 0 2px 0 #000, inset 0 0 1px 0 #000, 1px 2px 3px 4px rgba(0,0,0,0.4)");
+}
+
+/****************** AM ****************************
+	text-shadow examples.
+**************************************************/
+.ax{
+	.fs-1;
+	.bold();
+	.block();
+	.size(100px);
+	padding:20px;
+	.center-all();
+	.border-box();
+
+}
+.text-shadow-dark{
+	@bg-color : #303030;
+	.bg-color(@bg-color);
+	&:extend(.ax);
+	&:before{
+		.border-box();
+		padding:10px;
+		content: "Letter Press";
+		.center-all();
+		.upcase();
+		color : darken(@bg-color, 7%);
+		@txt-color : lighten(@bg-color, 5%);
+		.text-shadow("0px 2px 3px @{txt-color}");
+	}
+}
+.text-shadow-dark-blue{
+	@bg-color : #112D42;
+	&:extend(.ax);
+	.bg-color(@bg-color);
+	&:before{
+		.border-box();
+		padding:10px;
+		content: "Letter Press";
+		.center-all();
+		.upcase();
+
+		color : darken(@bg-color, 7%);
+		@txt-color : lighten(@bg-color, 5%);
+		.text-shadow("0px 2px 3px @{txt-color}");
+	}
+}
+.text-shadow0{
+	color :#222;
+	.text-stand-out();
+}
+.text-shadow1{
+
+}
+.text-shadow2{
+
+}
+.text-shadow3{
+
+}
+.text-shadow4{
+
+}
+.text-shadow5{
+
+}
+.text-shadow6{
+
+}
+/****************** AM ****************************
+	To use later.
+**************************************************/
+.new-box{
+	// .size(100px);
+	// .bg-color(#c0ff33);
+}
+.new-box:before{
+	// .size(100px);
+	// .block();
+	// .bg-color(#000);
+	// content: "\00a0";
+	// clear: both;
+	// position: relative;
+	// top: 10px;
+	// .bg-color(transparent);
+	// border: 1px solid #000;
+}

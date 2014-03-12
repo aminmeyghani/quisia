@@ -1,0 +1,119 @@
+/*****************************************
+	Styles for the elements of the examples.
+*****************************************/
+.page {
+	.center ( 900px );
+	.bg-color ( @Col_l1 );
+	border-radius : 2px;
+}
+
+.example{
+	.make-sm-column(4);
+}
+section{
+	.make-row();
+}
+button{
+	&:extend(.qbtn);
+
+}
+.pull-left{
+	float:left;
+}
+.pull-right{
+	float: right;
+}
+a{
+	.smooth();
+	&:hover{
+		.opacity(0.8);
+		.smooth();
+	}
+}
+
+
+/****************** AM ****************************
+									Layout
+**************************************************/
+.app-header{
+	background-color: black;
+	height:100px;
+}
+.app-hero{
+	background: url('../img/hero.jpg');
+	height:700px;
+	background-size: cover;
+	color:white;
+	@media(max-width:@screen-xs-max){
+		height: 300px;
+	}
+}
+.icon-feature{
+	padding-right: 52px;
+}
+.headline{
+	font-size: 50px;
+	padding-top: 100px;
+	padding-left: 50px;
+	text-align: center;
+}
+
+.app-nav, .app-company{
+	font-size: 1em;
+
+	.upcase();
+}
+
+.app-top {
+	a{
+		color: white;
+		padding:10px;
+		.border-radius(2px);
+		&:hover{
+			background-color: #e5e6e7;
+			color:#000;
+		}
+	}
+}
+a.app-company{
+	&:hover{
+		background-color: transparent;
+		color:#e5e6e7;
+	}	
+	&:active{
+		.opacity(1);
+	}
+}
+.app-feature{
+	color:#001228;
+	font-size: 20px;
+	margin-bottom: 30px;
+}
+.feature-head{
+	color:#001D3B;
+}
+.transparent{
+	.opacity(0.3);
+}
+
+
+.app-footer, .app-header{
+	margin-bottom: 0;
+}
+
+.app-feature.app-feature2{
+}
+
+.app-footer{
+	height:380px;
+	background-color:@dark-blue;
+}
+
+.app-hero.app-hero-subpage{
+	height: 100px;
+}
+.app-product{
+	height: 300px;
+	background-color: #e5e6e7;
+	border: 1px dashed #e5e6e7;
+}

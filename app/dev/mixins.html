@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>Mixins</title>
+	<meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+	<link rel="stylesheet" type="text/css" href="css/app.css">
+</head>
+<body>
+	<div class="back-top-top"><a class="arrow-up" href="#top"></a>
+		<!-- <a href="#top">Top</a> -->
+	</div>
+	<div class="container">
+		<div class="pane page-title">
+			<h1>Useful General Purpose and CSS3-Specific Mixins <a href="/">Go Home</a> </h1>
+		</div>
+		<div class="fix-float pane">
+
+			<h2>text-shadow Mixin Examples:</h2>
+			<h3 id="top">Simple Examples</h3>
+			<div class="fix-float box-region">
+
+				<div class="box-wrap">
+					<div class="text-shadow-dark"></div>
+					<code>
+						<a href="#text-shadow0">
+							<!-- .border-radius <br>(10px 0 0 0 ); -->
+						</a>
+					</code>
+				</div>
+
+				<div class="box-wrap">
+					<div class="text-shadow-dark-blue	"></div>
+					<code>
+						<a href="#text-shadow0"></a>
+					</code>
+				</div>
+
+			<!-- here doc -->
+			<div class="fix-float"></div>
+			<div class="fix-float box-region">
+				<hr>
+				<h3>Brief Documentation for <span class="doc-code">text-shadow</span> Mixins </h3>
+				<code class="doc">
+					<ul>
+
+						<li class="doc-code" id="box0">
+							.border-radius(10px 0 0 0 );
+							<ul>
+								<li class="doc-des">
+									expects four non-string arguments;
+								</li>
+								<li class="doc-des">
+									Similar to <span class="doc-code">border-radius : 10px 0 0 0;</span> <br> but
+									prints the result in long-hand for older
+									web-kit support.
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</code>
+
+
+			<code class="doc">
+				<ul>
+					<li class="doc-code" id="box8">
+						._border-radius(20%,"top-left","bottom-left");
+						<ul>
+							<li class="doc-des">
+								The first argument
+								is a value, and then the rest are the  corners explicitly passed as strings, in no particular order.
+							</li>
+							<li class="doc-des">
+								Equivalent to <span class="doc-code">
+								.border-radius(20% 0 0 20%);
+							</span>
+						</li>
+						<li class="doc-des">
+							Note the underscore in the mixin definition.
+							It makes it identifiable as a helper mixin.
+							Directly uses the implementation for the
+							border-radius helper.
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</code>
+
+	</div>
+</div>
+
+
+<div class="fix-float pane">
+
+	<h2>border-radius Mixin Examples:</h2>
+	<h3 id="top">Box Examples</h3>
+	<div class="fix-float box-region">
+		<div class="box-wrap">
+			<a class="box box0" href="#box0">0</a>
+			<code>
+				<a href="#box0">
+					.border-radius <br>(10px 0 0 0 );
+				</a>
+			</code>
+		</div>
+		<div class="box-wrap">
+			<a href="#box1" class="box box1">1</a>
+			<code>
+				<a href="#box1">
+					.border-radius <br>
+					("100px",10% , <br>20% , 30% , 40%);
+				</a>
+			</code>
+		</div>
+		<div class="box-wrap">
+			<a href="#box2" class="box box2">2</a>
+			<code>
+				<a href="#box2">
+					.border-radius(20px);
+				</a>
+			</code>
+		</div>
+		<div class="box-wrap">
+			<a href="#box3" class="box box3">3</a>
+			<code>
+				<a href="#box3">
+					.border-radius <br>(20px 5%);
+				</a>
+			</code>
+		</div>
+		<div class="box-wrap">
+			<a href="#box4" class="box box4">4</a>
+			<code>
+				<a href="#box4">
+					.border-radius <br>("2px", "50px");
+				</a>
+			</code>
+		</div>
+		<div class="box-wrap">
+			<a href="#box5" class="box box5">5</a>
+			<code>
+				<a href="#box5">
+					.border-radius  <br>
+					("50%","60%", <br> 10%,20%,30%,40%);
+				</a>
+			</code>
+		</div>
+		<div class="box-wrap">
+			<a href="#box6" class="box box6">6</a>
+			<code>
+				<a href="#box6">
+					.border-radius( <br>
+					"10px","40px",50%);
+				</a>
+			</code>
+		</div>
+		<div class="box-wrap">
+			<a href="#box7" class="box box7">7</a>
+			<code>
+				<a href="#box7">
+					._border-radius( <br> 10px,"top-left");
+				</a>
+			</code>
+		</div>
+		<div class="box-wrap">
+			<a href="#box8" class="box box8">8</a>
+			<code>
+				<a href="#box8">
+					._border-radius <br>
+					(20%,"top-left" <br>,"bottom-left");
+				</a>
+			</code>
+		</div>
+
+
+	</div>
+	<!-- Shapes -->
+	<hr>
+	<h3>Shapes Examples</h3>
+	<div class="fix-float box-region">
+		<div class="box-wrap">
+			<a class="box shape1"></a>
+			<code>
+				#shapes.pie( <br> 100%, "top-left");
+			</code>
+		</div>
+		<div class="box-wrap">
+			<a class="box shape2"></a>
+			<code>
+				#shapes.pie( <br> 100%, "top-right");
+			</code>
+		</div>
+		<div class="box-wrap">
+			<a class="box shape3"></a>
+			<code>
+				#shapes.pie( <br> 100%, "bottom-right");
+			</code>
+		</div>
+		<div class="box-wrap">
+			<a class="box shape4"></a>
+			<code>
+				#shapes.pie( <br> 100%, "bottom-left");
+			</code>
+		</div>
+		<div class="box-wrap">
+			<a class="box shape5"></a>
+			<code>
+				#shapes.clover(<br>100%, "top-left");
+			</code>
+		</div>
+
+		<div class="box-wrap">
+			<a class="box shape6"></a>
+			<code>
+				#shapes.clover(<br>100%, "top-right");
+			</code>
+		</div>
+		<div class="box-wrap">
+			<a class="box shape7"></a>
+			<code>
+				#shapes.clover(<br>100%, "bottom-right");
+			</code>
+		</div>
+		<div class="box-wrap">
+			<a class="box shape8"></a>
+			<code>
+				#shapes.clover(<br>100%, "bottom-left");
+			</code>
+		</div>
+	</div>
+	<!-- here doc -->
+	<div class="fix-float box-region">
+		<hr>
+		<h3>Brief Documentation for <span class="doc-code">border-radius</span> Mixins </h3>
+		<code class="doc">
+			<ul>
+
+				<li class="doc-code" id="box0">
+					.border-radius(10px 0 0 0 );
+					<ul>
+						<li class="doc-des">
+							expects four non-string arguments;
+						</li>
+						<li class="doc-des">
+							Similar to <span class="doc-code">border-radius : 10px 0 0 0;</span> <br> but
+							prints the result in long-hand for older
+							web-kit support.
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</code>
+		<code class="doc">
+			<ul>
+				<li class="doc-code" id="box1">
+					.border-radius("100px",10% , 20% , 30% , 40%);
+					<ul>
+						<li class="doc-des">
+							first argument passed as string
+						</li>
+						<li class="doc-des">
+							expects four arguments after
+						</li>
+						<li class="doc-des">
+							sets all the corners to 100px and each value
+							after that sets the ellipse radius to the value
+							clockwise from  top-left to bottom-left.
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</code>
+		<code class="doc">
+			<ul>
+				<li class="doc-code" id="box2">
+					.border-radius(20px);
+					<ul>
+
+						<li class="doc-des">
+							is equivalent to the normal <span class="doc-code">border-radius</span> that
+							sets all the corners to 20px;
+							output is : <span class="doc-code">border-radius : 20px;</span>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</code>
+		<code class="doc">
+			<ul>
+				<li class="doc-code" id="box3">
+					.border-radius(20px 5%);
+					<ul>
+						<li class="doc-des">
+							two arguments only separated by a space
+						</li>
+						<li class="doc-des">
+							sets all the corners to 20px
+							and then the ellipse radius to
+							5% for each corner.
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</code>
+		<code class="doc">
+			<ul>
+				<li class="doc-code" id="box4">
+					.border-radius("2px", "50px");
+					<ul>
+						<li class="doc-des">
+							Expects only two arguments as strings.
+						</li>
+						<li class="doc-des">
+							.border-radius("2px", "50px");
+							is equivalent to <span class="doc-code">
+							border-radius : 2px 50px;
+						</span>
+						But the difference is that the output is
+						printed long-hand for maximum compatibility.
+						Notice that both arguments are passed in
+						as strings to avoid mixin overlap and conflict.
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</code>
+	<code class="doc">
+		<ul>
+			<li class="doc-code" id="box5">
+				.border-radius("50%","60%",10%,20%,30%,40%);
+				<ul>
+					<li class="doc-des">
+						The first two arguments are passed as strings
+					</li>
+					<li class="doc-des">
+						Expects fours arguments after the first two.
+					</li>
+					<li class="doc-des">
+						sets top-left and bottom-right to 50% and
+						sets top-right and bottom-left to 60% in
+						long-hand form. Then starting from top-left
+						corner and moving clockwise, it  sets the ellipse
+						radius to 10%,20%,30% and 40%.
+						Notice that the first and second arguments are passed
+						as strings and all the four values are specified.
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</code>
+	<code class="doc">
+		<ul>
+			<li class="doc-code" id="box6">
+				.border-radius("10px","40px",50%);
+				<ul>
+					<li class="doc-des">
+						is equivalent to:
+						<span class="doc-code">
+							.border-radius("10px","40px",50%,50%,50%,50%);
+						</span>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</code>
+	<code class="doc">
+		<ul>
+			<li class="doc-code" id="box7">
+				._border-radius(10px,"top-left");
+				<ul>
+					<li class="doc-des">
+						The first argument
+						is a value, and then the rest are the  corners explicitly passed as strings, in no particular order.
+					</li>
+					<li class="doc-des">
+						equivalent to : <span class="doc-code">.border-radius(10px 0 0 0);</span>
+					</li>
+
+					<li class="doc-des">
+						Note the underscore in the mixin definition.
+						It makes it identifiable as a helper mixin.
+						Directly uses the implementation for the
+						border-radius helper.
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</code>
+	<code class="doc">
+		<ul>
+			<li class="doc-code" id="box8">
+				._border-radius(20%,"top-left","bottom-left");
+				<ul>
+					<li class="doc-des">
+						The first argument
+						is a value, and then the rest are the  corners explicitly passed as strings, in no particular order.
+					</li>
+					<li class="doc-des">
+						Equivalent to <span class="doc-code">
+						.border-radius(20% 0 0 20%);
+					</span>
+				</li>
+				<li class="doc-des">
+					Note the underscore in the mixin definition.
+					It makes it identifiable as a helper mixin.
+					Directly uses the implementation for the
+					border-radius helper.
+				</li>
+			</ul>
+		</li>
+	</ul>
+</code>
+
+</div>
+</div>
+
+<div class="pane">
+	<h2>box-shadow Examples</h2>
+
+	<div class="fix-float box-region">
+		<div class="box-wrap box-wrap-fixed">
+			<a class="box box-shadow0" href="#box-shadow0">0</a>
+			<code>
+				<p>
+					<a href="#box-shadow0">
+						.box-shadow <br>(inner,left);
+					</a>
+				</p>
+			</code>
+		</div>
+
+		<div class="box-wrap box-wrap-fixed">
+			<a class="box box-shadow1" href="#box-shadow1">1</a>
+			<code>
+				<p>
+					<a href="#box-shadow1">
+						.box-shadow <br>
+						(inner,right,<br>
+						@blur : 5px);
+					</a>
+				</p>
+			</code>
+		</div>
+
+		<div class="box-wrap box-wrap-fixed">
+			<a class="box box-shadow2" href="#box-shadow2">2</a>
+			<code>
+				<p>
+					<a href="#box-shadow2">
+						.box-shadow(<br>
+						inner,bottom,<br>
+						@color : <br> rgba(0,0,0,0.5));
+					</a>
+				</p>
+			</code>
+		</div>
+		<div class="box-wrap box-wrap-fixed">
+			<a class="box box-shadow3" href="#box-shadow3">3</a>
+			<code>
+				<p>
+					<a href="#box-shadow3">
+						.box-shadow(<br>
+						inner,top,<br>
+						@y: 4px ,<br>
+						@blur : 10px);
+					</a>
+				</p>
+			</code>
+		</div>
+
+		<div class="box-wrap box-wrap-fixed">
+			<a class="box box-shadow4" href="#box-shadow4">4</a>
+			<code>
+				<p>
+					<a href="#box-shadow4">
+						.box-shadow( <br>
+						inner,top,<br>
+						@y: 4px ,<br>
+						@blur : 10px);
+					</a>
+				</p>
+			</code>
+		</div>
+		<div class="fix-float"></div>
+		<div class="box-wrap box-wrap-fixed">
+			<a class="box box-shadow5" href="#box-shadow5">5</a>
+			<code>
+				<p>
+					<a href="#box-shadow5">
+						.box-shadow(<br>
+						outer,left);
+					</a>
+				</p>
+			</code>
+		</div>
+
+
+		<!-- here -->
+		<div class="box-wrap box-wrap-fixed">
+			<a class="box box-shadow6" href="#box-shadow6">6</a>
+			<code>
+				<p>
+					<a href="#box-shadow6">
+						.box-shadow( <br>
+						outer,right);
+					</a>
+				</p>
+			</code>
+		</div>
+
+		<div class="box-wrap box-wrap-fixed">
+			<a class="box box-shadow7" href="#box-shadow7">7</a>
+			<code>
+				<p>
+					<a href="#box-shadow7">
+						.box-shadow(<br>
+						outer,bottom);
+					</a>
+				</p>
+			</code>
+		</div>
+
+
+		<div class="box-wrap box-wrap-fixed">
+			<a class="box box-shadow8" href="#box-shadow8">8</a>
+			<code>
+				<p>
+					<a href="#box-shadow8">
+						.box-shadow(<br>
+						outer,top);
+					</a>
+				</p>
+			</code>
+		</div>
+
+		<div class="box-wrap box-wrap-fixed">
+			<a class="box box-shadow9" href="#box-shadow9">9</a>
+			<code>
+				<p>
+					<a href="#box-shadow9">
+						[see the docs]
+					</a>
+				</p>
+			</code>
+		</div>
+
+		<div class="box-wrap box-wrap-fixed">
+			<a class="box box-shadow10" href="#box-shadow10">10</a>
+			<code>
+				<p>
+					<a href="#box-shadow10">
+						[see the docs]
+					</a>
+				</p>
+			</code>
+		</div>
+
+		<div class="box-wrap box-wrap-fixed">
+			<a class="box box-shadow11" href="#box-shadow11">11</a>
+			<code>
+				<p>
+					<a href="#box-shadow11">
+						.box-shadow(<br>
+						"0 0 2px 0 <br>
+						#000,<br>
+						inset 0 0 <br>
+						1px 0 #000");
+					</a>
+				</p>
+			</code>
+		</div>
+
+		<div class="box-wrap box-wrap-fixed">
+			<a class="box box-shadow12" href="#box-shadow12">12</a>
+			<code>
+				<p>
+					<a href="#box-shadow12">
+						[see the docs]
+					</a>
+				</p>
+			</code>
+		</div>
+
+		<div class="box-wrap box-wrap-fixed">
+			<a class="box box-shadow13" href="#box-shadow13">13</a>
+			<code>
+				<p>
+					<a href="#box-shadow13">
+						[see the docs]
+					</a>
+				</p>
+			</code>
+		</div>
+
+		<div class="box-wrap box-wrap-fixed">
+			<a class="box box-shadow14" href="#box-shadow14">14</a>
+			<code>
+				<p>
+					<a href="#box-shadow14">
+						[see the docs]
+					</a>
+				</p>
+			</code>
+		</div>
+
+		<div class="box-wrap box-wrap-fixed">
+			<a class="box box-shadow15" href="#box-shadow15">15</a>
+			<code>
+				<p>
+					<a href="#box-shadow15">
+						[see the docs]
+					</a>
+				</p>
+			</code>
+		</div>
+
+		<div class="box-wrap box-wrap-fixed">
+			<a class="box box-shadow16" href="#box-shadow16">16</a>
+			<code>
+				<p>
+					<a href="#box-shadow16">
+						[see the docs]
+					</a>
+				</p>
+			</code>
+		</div>
+
+		<div class="box-wrap box-wrap-fixed">
+			<a class="box box-shadow17" href="#box-shadow17">17</a>
+			<code>
+				<p>
+					<a href="#box-shadow17">
+						[see the docs]
+					</a>
+				</p>
+			</code>
+		</div>
+
+		<div class="box-wrap box-wrap-fixed">
+			<a class="box box-shadow18" href="#box-shadow18">18</a>
+			<code>
+				<p>
+					<a href="#box-shadow18">
+						[see the docs]
+					</a>
+				</p>
+			</code>
+		</div>
+
+		<div class="box-wrap box-wrap-fixed">
+			<a class="box box-shadow19" href="#box-shadow19">19</a>
+			<code>
+				<p>
+					<a href="#box-shadow19">
+						[see the docs]
+					</a>
+				</p>
+			</code>
+		</div>
+	</div>
+	<div class="fix-float box-region">
+		<hr>
+		<h3>Brief Documentation for <span class="doc-code">box-shadow</span> Mixins </h3>
+
+		<code class="doc">
+			<ul>
+				<li class="doc-code" id="box1">
+					.box-shadow(inner/outer, left/right/top/bottom, [@x , @y , @blur , @speed, @color ])
+					<ul>
+						<li class="doc-des">
+							@x , @y , @blur , @speed, @color  are optional parameters
+						</li>
+						<li class="doc-des">
+							The first and the second arguemnts are required and should be passed in as non-string values.
+						</li>
+						<li class="doc-des">
+							Example:
+							<ul>
+								<li class="doc-code">
+									.box-shadow(inner, left, 1px, 2px, 3px, 4px, #000);
+									<li>The first argument is required. It is a non-string parameter. The possible options are either inner or outer.</li>
+									<li>The second argument is required. It is a non-string parameter than can be either left, right, top or bottom.</li>
+									<li>The rest of the arguments are optional.</li>
+									<li>In the example above, 1px is the horizontal displacement, 2px is the vertical displacement, 3px is the amount of blur, 4px is the speed, and the last argument (#000) is the color.</li>
+								</li>
+							</ul>
+							<li class="doc-des">
+								The arguments can also be used explicitly in no particular order. But the first two arguments
+								should be provided and the order is important.
+								<ul>
+									<li class="doc-des">
+										Examples :
+										<ul>
+											<li class="doc-code">.box-shadow(inner, left, @blur:10px, @color:#fff);</li>
+											<li class="doc-code">.box-shadow(outer, right,  @color : rgba(0,0,0,0.6), @y:10px, @speed : 1px, @blur:10px);</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</code>
+		<code class="doc">
+			<ul>
+				<li class="doc-code" id="box1">
+					.box-shadow("arguments");
+					<ul>
+						<li class="doc-des">
+							The mixin is very general, and takes only one argument. It is important to notice that the single argument should be padded as a string. It is essentially equivalent to the standard CSS3 specification.
+						</li>
+						<li class="doc-des">
+							Example:
+							<ul>
+								<li class="doc-code">
+									.box-shadow("0 0 2px 0 #000, inset 0 0 1px 0 #000, 1px 2px 3px 4px rgba(0,0,0,0.4)");
+								</li>
+								<li class="doc-des">
+									Although the mixin is identical to the standard CSS3 specification, it has one advantage. And that is that it can be used in combination with the other box-shadow mixins. For instance:
+									<p class="doc-code">
+										.multiple-shadows{ <br>
+										&nbsp;&nbsp;.box-shadow(inner,left); <br>
+										&nbsp;&nbsp;.box-shadow(outer,top); <br>
+										&nbsp;&nbsp;.box-shadow("0 0 2px 0 #000, inset 0 0 1px 0 #000, 1px 2px 3px 4px rgba(0,0,0,0.4)");<br>
+									}
+								</p>
+								<p class="doc-des">
+									This will result in the following output:
+								</p>
+								<p class="doc-code">
+									.multiple-shadows{ <br>
+									box-shadow: inset 3px 0 8px -3px #000000, 0 -3px 4px -1px #000000, 0 0 2px 0 #000, inset 0 0 1px 0 #000, 1px 2px 3px 4px rgba(0,0,0,0.4);
+								}
+							</p>
+
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li class="doc-code">
+			.box-shadow-well([@blur, @speed, @color]);
+			<ul>
+				<li class="doc-des">
+					Used for making well regions. It accepts three optional parameters: @blur, @speed and @color.
+
+				</li>
+				<li class="doc-des">
+					As with any mixin with default values, the parameters can be passed in explicitly.
+				</li>
+				<li class="doc-des">
+					Example:
+					<p class="doc-code">
+						.example1{ <br>
+						&nbsp;&nbsp;.box-shadow-well(@color : #000 , @blur : 20px); <br>
+					}
+				</p>
+			</li>
+		</ul>
+	</li>
+
+</ul>
+</code>
+
+
+</div>
+</div>
+
+<div class="pane">
+	<h2>Tooltip Mixin Example</h2>
+	<a href="" class="tip">Hover on me
+		<span>See the message!</span>
+	</a>
+</div>
+<div class="pane last-pane">
+	<h2>Font Size Mixin Examples</h2>
+	<div class="box-region">
+		<ul>
+			<li class="fs-1"> <code>fs-1</code></li>
+			<li class="fs-2"> <code>fs-2</code></li>
+			<li class="fs-3"> <code>fs-3</code></li>
+			<li class="fs-4"> <code>fs-4</code></li>
+			<li class="fs-5"> <code>fs-5</code></li>
+			<li class="fs-6"> <code>fs-6</code></li>
+			<li class="fs-7"> <code>fs-7</code></li>
+			<li class="fs-8"> <code>fs-8</code></li>
+		</ul>
+	</div>
+	<div class="fix-float box-region">
+		<hr>
+		<h3>Brief Documentation for <span class="doc-code">font-size</span> Mixins </h3>
+
+		<code class="doc">
+			<ul>
+				<li class="doc-des">
+					font-size maker:
+				</li>
+
+				<p class="doc-code">
+					@_base-fs : 13; <br>
+					@fs-lower-bound : 0; <br>
+					@fs-upper-bound : 20; <br>
+					@fs-steps : 2; <br>
+					<br>
+					.make-fs(@fs-upper-bound); <br>
+					.make-fs( @i: @fs-lower-bound ; @j : 1) when not(@i=0) { <br>
+					&nbsp; &nbsp;@v : (@i)/(1/((@_base-fs)))/100; <br>
+					&nbsp; &nbsp;.fs-@{j}{ <br>
+					&nbsp; &nbsp;&nbsp; &nbsp;font-size : ~"@{v}em"; <br>
+					&nbsp; &nbsp;} <br>
+					&nbsp; &nbsp;.make-fs( (@i - @fs-steps), (@j + 1)); <br>
+				}
+			</p>
+			<li class="doc-des">
+				<span class="doc-code">@_base-fs </span>: sets the base font size from which other font size values are calculated.
+			</li>
+			<li class="doc-des">
+				<span class="doc-code">@fs-lower-boud </span>: sets the initial value of the font-size maker loop.
+			</li>
+			<li class="doc-des">
+				<span class="doc-code">@fs-upper-bound </span>: sets the last value of the font-size maker loop.
+			</li>
+			<li class="doc-des">
+				<span class="doc-code">@fs-steps </span>: sets the distances between each font size value.
+			</li>
+		</ul>
+	</code>
+	<code class="doc">
+	</code>
+
+
+</div>
+</div>
+</div>
+</body>
+
+</body>
+</html>

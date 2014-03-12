@@ -1,0 +1,115 @@
+// Styles for the doc page.
+.page-title{
+	@title-radius : 5px;
+	// ._border-radius(4px, "top-left", "top-right");
+	.border-radius(@title-radius, @title-radius, 0, 0);
+}
+.last-pane{
+	@title-radius : 5px;
+	.border-radius(0,0,@title-radius, @title-radius);
+}
+.box-wrap{
+	.float-left();
+	margin : 10px;
+}
+.box-wrap-fixed{
+	// width: 160px;
+}
+.box{
+	.size(@example-size);
+	margin : 10px auto;
+	background-color: darken(@primary,10%);
+	color : @white;
+	display: block;
+	.border-box();
+	padding:10px;
+	position: relative;
+	.smooth();
+	&:hover{
+		.opacity(0.6);
+		cursor: pointer;
+		.smooth();
+	}
+	&:active{
+		.opacity(1);
+	}
+}
+.container{
+	width: 1024px;
+	margin : 0 auto;
+}
+
+@back-top-top-bg-color : darken(@primary,10%);
+.arrow-up {
+	.size(0);
+	display: block;
+	border-left: 26px solid transparent;
+	border-right: 26px solid transparent;
+	border-bottom: 26px solid @back-top-top-bg-color;
+	position: absolute;
+	right:10px;
+	bottom: 10px;
+	&:hover{
+		border-bottom-color : darken(@primary,30%);
+	}
+}
+.back-top-top{
+	position: fixed;
+	right: 10px;
+	bottom :10px;
+	.size(50px);
+	// background-color: @back-top-top-bg-color;
+	color : lighten(@primary,10%);
+	padding:15px 10px;
+	.border-box();
+	text-transform: uppercase;
+	.fs-7;
+	font-weight: bold;
+}
+.doc{
+	display: block;
+	width: 80%;
+}
+.doc-code{
+	font-weight: bold;
+	font-style: italic;
+	font-family: "courier";
+}
+.doc-des{
+	font-weight: normal;
+	font-style: normal;
+}
+
+.box-region{
+	background-color: @gray-light;
+	padding:20px;
+	margin-bottom: 10px;
+}
+
+.box-empty{
+	background-color: transparent;
+	color : @primary;
+	display: block;
+}
+
+.box-normal(@bg-color : @primary){
+	padding:20px;
+	.size(170px);
+	.bg-color(@bg-color);
+	.fs-5;
+	.center-all();
+	.border-box();
+	color : @white;
+}
+
+.box-normal{
+	.box-normal();
+}
+
+.pane{
+	padding:20px;
+	.size(auto,auto);
+	background-color:lighten( @gray-light,7%);
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
