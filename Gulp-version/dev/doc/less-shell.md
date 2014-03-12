@@ -13,7 +13,7 @@
 
 # Components #
 
-## btnMaker
+## btnMakers
 
 ### Usage:
 	.btn2{
