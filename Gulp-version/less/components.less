@@ -1,0 +1,19 @@
+/**
+ Makes a buttion using the `make`
+
+### Usage:
+	.btn2{
+	  .btn-maker();
+	}
+@param {String} size of the padding
+@param {non-string} margin value for the bottom of the button.
+@return {none} none
+@api public
+*/
+.btn-maker(@size: 2px ; @margin : 10px){
+	padding : @size;
+ }
+.btn{
+	.btn-maker();
+	transition : all 2s ease-in;
+}

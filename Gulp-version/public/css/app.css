@@ -1,0 +1,32 @@
+/**
+ Makes a buttion using the `make`
+
+### Usage:
+	.btn2{
+	  .btn-maker();
+	}
+@param {String} size of the padding
+@param {non-string} margin value for the bottom of the button.
+@return {none} none
+@api public
+*/
+.btn {
+  padding: 2px;
+  -webkit-transition: all 2s ease-in;
+  transition: all 2s ease-in;
+}
+/**
+ Makes a buttion using the `make`
+
+### Usage:
+	.gridmaker{
+	  .btn-maker();
+	}
+@param {String} size of the padding
+@param {non-string} margin value for the bottom of the button.
+@return {none} none
+@api public
+*/
+.grid {
+  padding: 2px;
+}
