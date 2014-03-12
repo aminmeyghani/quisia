@@ -11,13 +11,13 @@
 
 <!-- Start /~Amin~/_docs+libs/QUISIA/quisia/Gulp-version/dev/less/components.less -->
 
-# Componentsz #
+# Components #
 
 ## btnMaker
 
 ### Usage:
 	.btn2{
-	  .btn-maker();
+	  .btn-maker(20px);
 	}
 
 ### Params: 
@@ -42,8 +42,8 @@
 ## Makes a grid
 
 ### Usage:
-	.gridmaker{
-	  .btn-maker();
+	.grid{
+	  .grid-maker();
 	}
 
 ### Params: 
@@ -51,10 +51,6 @@
 * **String** *size* of the padding
 
 * **non-string** *margin* value for the bottom of the button.
-
-### Return:
-
-* **none** none
 
 <!-- End /~Amin~/_docs+libs/QUISIA/quisia/Gulp-version/dev/less/grid.less -->
 
@@ -68,15 +64,13 @@
 ## general utilities
 
 ### Usage:
-	.fix-float{
-	  .fis();
+	.after{
+	  .fix-float();
 	}
 
 ### Params: 
 
-* **String** *size* of the padding
-
-* **non-string** *margin* value for the bottom of the button.
+* **none** *none* 
 
 ### Return:
 
