@@ -27,6 +27,13 @@ var app  = {
 	docPath : './dev/doc/'
 };
 
+//TODO: dont hault on error
+//https://github.com/gulpjs/gulp/issues/75
+
+// You should handle errors yourslef.
+//https://github.com/sindresorhus/gulp-react/issues/3
+//https://github.com/gulpjs/gulp/blob/master/docs/recipes/combining-streams-to-handle-errors.md
+
 /* LESS Tasks */
 //--------------
 

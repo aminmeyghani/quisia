@@ -26,6 +26,8 @@
 
 * **non-string** *margin* value for the bottom of the button.
 
+* **non-string** *padding* the default padding value around the button.
+
 ### Return:
 
 * **none** none
