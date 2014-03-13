@@ -1,0 +1,103 @@
+// Triangles
+.triangle(@color:#000 ; @s :20px ;  @d:up){
+  @dir : @d;
+  @size : @s;
+  & when(@dir=up){
+    .size(0);
+    border-left   : @size solid transparent;
+    border-right  : @size solid transparent;
+    border-bottom : @size solid @color;
+  }
+  & when(@dir=down){
+    .size(0);
+    border-left   : @size solid transparent;
+    border-right  : @size solid transparent;
+    border-top    : @size solid @color;
+  }
+  & when(@dir=left){
+    .size(0);
+    border-top     : @size solid transparent;
+    border-bottom  : @size solid transparent;
+    border-right   : @size solid @color;
+  }
+  & when(@dir=right){
+    .size(0);
+    border-top     :  @size solid transparent;
+    border-bottom  :  @size solid transparent;
+    border-left   :  @size solid @color;
+  }
+}
+
+// Making shapes based on the border-radius mixin
+
+// ## Clover ##
+#shapes{
+  .clover(@r ; @dir) when (@dir="top-right"){
+    ._border-radius(@r,"top-left","bottom-right","bottom-left");
+  }
+  .clover(@r ; @dir) when (@dir="bottom-right"){
+    ._border-radius(@r,"top-left","top-right","bottom-left");
+  }
+  .clover(@r ; @dir) when (@dir="bottom-left"){
+    ._border-radius(@r,"top-left","top-right","bottom-right");
+  }
+  .clover(@r ; @dir) when (@dir="top-left"){
+    ._border-radius(@r,"top-right","bottom-right","bottom-left");
+  }
+  // ## pie ##
+
+  // @corner determines the corner that is going to be curved
+  .pie (@r ; @corner) when (@corner="top-left"){
+    .border-radius("@{r}" , 100%,0,0,0);
+  }
+  .pie (@r ; @corner) when (@corner="top-right"){
+    .border-radius("@{r}" , 0,100%,0,0);
+  }
+  .pie (@r ; @corner) when (@corner="bottom-right"){
+    .border-radius("@{r}" , 0,0,100%,0);
+  }
+  .pie (@r ; @corner) when (@corner="bottom-left"){
+    .border-radius("@{r}" , 0,0,0,100%);
+  }
+}
+
+
+
+  // App shapes
+
+// // ## tooltip ##
+// .tip {
+//   position: relative;
+//   &:hover{
+//     .smooth();
+//     span{
+//       .opacity(1);
+//     }
+//   }
+//   span{
+//     .size(150px,50px);
+//     .border-box();
+//     position: absolute;
+//     z-index: 100;
+//     top: -5px;
+//     left: 60px;
+//     padding: 15px 15px;
+//     color: @white;
+//     background: @primary;
+//     .fs-7;
+//     .smooth();
+//     .opacity(0);
+//     .border-radius(5px);
+//     &:before{
+//       .size(0,0);
+//       position:absolute;
+//       left:-8px;
+//       top:7px;
+//       display:block;
+//       content:'';
+//       border-top: 8px solid transparent;
+//       border-bottom: 8px solid transparent;
+//       border-right:8px solid @primary;
+//     }
+//   }
+// }

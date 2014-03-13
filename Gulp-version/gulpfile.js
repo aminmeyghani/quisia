@@ -95,7 +95,7 @@ gulp.task("less-dev", function(){
 /* Docs */
 //--------------
 gulp.task("doc-concat", ['less-dev'], function(){
-	return gulp.src(app.lessRoot+"*.less")
+	return gulp.src(app.lessRoot+"**/*.less")
 	.pipe(g.markdox())
 	.pipe(g.concat("less-shell.md"))
 	.pipe(gulp.dest(app.docPath+""))
@@ -149,7 +149,7 @@ gulp.task('html', function () {
 
 gulp.task('watch-connect', function () {
   gulp.watch([app.devPath+'**/*.html'], ['html']);
-  gulp.watch([app.devPath+'less/*.less'], ['doc-concat']);
+  gulp.watch([app.devPath+'less/**/*.less'], ['doc-concat']);
   gulp.watch([app.devPath+'doc/**'], ['md-html']);
 });
 
