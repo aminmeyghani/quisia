@@ -21,7 +21,8 @@
     "gulp-load": "~0.1.1",
     "gulp-load-plugins": "~0.4.0",
     "gulp-connect": "~1.0.7",
-    "gulp-markdown": "~0.1.2"
+    "gulp-markdown": "~0.1.2",
+    "stream-combiner": "0.0.4"
   },
   "dependencies": {
     "gulp": "~3.5.5"

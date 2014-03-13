@@ -5,6 +5,7 @@
 // var gulp = require('gulp');
 // var less = require('gulp-less');         //https://github.com/plus3network/gulp-less
 var path = require('path');
+var Combine = require('stream-combiner');
 // var watch = require('gulp-watch');       // https://github.com/floatdrop/gulp-watch
 // var cssmin = require('gulp-cssmin');     // https://github.com/chilijung/gulp-cssmin/
 // var rename = require('gulp-rename');     // https://github.com/hparra/gulp-rename
@@ -30,12 +31,30 @@ var app  = {
 //TODO: dont hault on error
 //https://github.com/gulpjs/gulp/issues/75
 
+//dont die on watch: https://github.com/gulpjs/gulp/issues/71
+
 // You should handle errors yourslef.
 //https://github.com/sindresorhus/gulp-react/issues/3
 //https://github.com/gulpjs/gulp/blob/master/docs/recipes/combining-streams-to-handle-errors.md
 
+//more
+// https://github.com/wearefractal/gulp-coffee/pull/3
+
+//more seems related:
+//http://stackoverflow.com/questions/21602332/catching-gulp-mocha-errors
+
+// even more
+//https://github.com/gulpjs/gulp/issues/259
+
+function handleError(err) {
+  console.log(err.toString());
+  this.emit('end');
+}
+
+
 /* LESS Tasks */
 //--------------
+
 
 //TODO conditional compilation ... ? 
 
@@ -65,13 +84,13 @@ gulp.task('less-dist',['_less'], function () {
 gulp.task("less-dev", function(){
 	return gulp.src(app.lessRoot+'app.less')
 	.pipe(g.less({paths: [ path.join(__dirname, 'less', 'includes') ]}))
+	.on("error", handleError)
 	//http://stackoverflow.com/questions/21025995/gulp-less-not-handling-includes-properly
 	.pipe(g.autoprefixer("ff 3.6","opera 9.5", "ie 8", "chrome 5", "ios 3.2", "android 2.1", "safari 3.1"))
 	.pipe(g.rename({suffix: '.dev'}))
 	.pipe(gulp.dest('./dev/css/'))
 	.pipe(connect.reload());
 });
-
 
 /* Docs */
 //--------------

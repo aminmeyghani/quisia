@@ -13,7 +13,7 @@
 
 # Components #
 
-## btnMakers
+## btnMakerszxzz
 
 ### Usage:
 	.btn2{
@@ -22,7 +22,7 @@
 
 ### Params: 
 
-* **String** *size* of the padding
+* **String** *size* of the padding...
 
 * **non-string** *margin* value for the bottom of the button.
 
