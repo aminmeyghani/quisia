@@ -1,20 +1,35 @@
+/*
+  # app-mixins.less #
+*/
 
-// fix-float mixin for floated
-// elements. Creates a wrapper for the
-// floated elements giving the box a height.
+/*   ## fix-float 
+fix-float mixin for floated elements. Creates a wrapper for the floated elements giving the box a height.
+
+### Usage ###
+  Apply the class to a wrapper div that contains floated elements.
+*/  
 
 .fix-float:after{
   .fix-float();
 }
 
-// .box-shadow-well([@blur, @speed, @color]);
-// Used for making well regions. It accepts three optional parameters: @blur, @speed and @color.
-// As with any mixin with default values, the parameters can be passed in explicitly.
-// Example:
-// .example1{
-//   .box-shadow-well(@color : #000 , @blur : 20px);
-// }
+/*
 
+## box-shadow ##
+    .box-shadow-well([@blur, @speed, @color]);
+Used for making well regions. It accepts three optional parameters: 
+
+### Usage ###
+
+     .example1{
+       .box-shadow-well(@color : #000 , @blur : 20px);
+     }
+
+@param {non-string} @blur the amount of blur
+@param {non-string} @speed the amount of speed
+@param {non-string} @color the color for the shadow
+
+*/
 .box-shadow-well(@blur :10px ; @speed : 0 ; @color : #000){
   .box-shadow("inset 0 0 @{blur} @{speed} @{color}");
 }
@@ -22,7 +37,23 @@
 .text-stand-out(){
   .text-shadow("0px 2px 3px #555;");
 }
-// doc goes here.
+
+/*
+## .smooth([@duration]) ##
+  Adds CSS3 transition for the opacity property.
+
+### Usage ###
+    a{
+      .snooth(200ms);
+        &:hover{
+        .smooth(500ms);
+        }
+    }
+@param {non-string} @duration passed in either as milliseconds or seconds. 200ms or 3s are valid values.
+
+
+*/
+
 .smooth(@duration : @animation-duration){
   transition : opacity @duration @animation-timing-function;
 }

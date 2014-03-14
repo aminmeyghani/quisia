@@ -1,0 +1,38 @@
+<!-- Start /~Amin~/_docs+libs/QUISIA/quisia/Gulp-version/dev/less/app/app-mixins.less -->
+
+<h1 id="app-mixins-less">app-mixins.less</h1>
+<h2 id="fix-float">fix-float</h2>
+<p>fix-float mixin for floated elements. Creates a wrapper for the floated elements giving the box a height.</p>
+<h3 id="usage">Usage</h3>
+<p>  Apply the class to a wrapper div that contains floated elements.</p>
+<h2 id="box-shadow">box-shadow</h2>
+<pre><code>.box-shadow-well([@blur, @speed, @color]);
+</code></pre><p>Used for making well regions. It accepts three optional parameters: </p>
+<h3 id="usage">Usage</h3>
+<pre><code> .example1{
+   .box-shadow-well(@color : #000 , @blur : 20px);
+ }
+</code></pre><h3 id="params-">Params:</h3>
+<ul>
+<li><p><strong>non-string</strong> <em>@blur</em> the amount of blur</p>
+</li>
+<li><p><strong>non-string</strong> <em>@speed</em> the amount of speed</p>
+</li>
+<li><p><strong>non-string</strong> <em>@color</em> the color for the shadow</p>
+</li>
+</ul>
+<h2 id="-smooth-duration-">.smooth([@duration])</h2>
+<p>  Adds CSS3 transition for the opacity property.</p>
+<h3 id="usage">Usage</h3>
+<pre><code>a{
+  .snooth(200ms);
+    &amp;amp;:hover{
+    .smooth(500ms);
+    }
+}
+</code></pre><h3 id="params-">Params:</h3>
+<ul>
+<li><strong>non-string</strong> <em>@duration</em> passed in either as milliseconds or seconds. 200ms or 3s are valid values.</li>
+</ul>
+<!-- End /~Amin~/_docs+libs/QUISIA/quisia/Gulp-version/dev/less/app/app-mixins.less -->
+

@@ -1,6 +1,9 @@
 // intro
 //http://www.sitepoint.com/introduction-gulp-js/
 //http://travismaynard.com/writing/getting-started-with-gulp
+//http://travismaynard.com/writing/no-need-to-grunt-take-a-gulp-of-fresh-air
+//run multip
+//http://jaysoo.ca/2014/01/27/gruntjs-vs-gulpjs/
 // Explicitly requiring each plugin.
 // var gulp = require('gulp');
 // var less = require('gulp-less');         //https://github.com/plus3network/gulp-less
@@ -98,17 +101,18 @@ gulp.task("doc-concat", ['less-dev'], function(){
 	return gulp.src(app.lessRoot+"**/*.less")
 	.pipe(g.markdox())
 	.pipe(g.concat("less-shell.md"))
-	.pipe(gulp.dest(app.docPath+""))
+	.pipe(gulp.dest(app.docPath))
 	.pipe(connect.reload());
 });
 
 // Rename each file:
 // http://stackoverflow.com/questions/22123958/failing-to-get-updated-contents-of-a-file-after-gulp-stream-completes
 gulp.task("doc", function(){
-	return gulp.src(app.lessRoot+"*.less")
+	return gulp.src(app.lessRoot+"**/*.less")
 	.pipe(g.markdox())
 	.pipe(g.rename({extname: '.md'}))
-	.pipe(gulp.dest(app.docPath+"all"));
+	.pipe(gulp.dest(app.docPath+"all"))
+	.pipe(connect.reload());
 });
 
 
@@ -128,7 +132,7 @@ gulp.task('watch-less', function () {
 gulp.task('default', ['less-all','doc-all']);
 //http://stackoverflow.com/questions/21638659/gulp-open-task-doesnt-correctly-execute
 gulp.task('less-all', ['less-dist','less-dev']);
-gulp.task('doc-all', ['doc','doc-concat', 'doc-copy']);
+gulp.task('doc-all', ['doc','doc-concat']);
 
 
 /* Connect + livereload */
@@ -148,17 +152,18 @@ gulp.task('html', function () {
 });
 
 gulp.task('watch-connect', function () {
-  gulp.watch([app.devPath+'**/*.html'], ['html']);
-  gulp.watch([app.devPath+'less/**/*.less'], ['doc-concat']);
-  gulp.watch([app.devPath+'doc/**'], ['md-html']);
+  gulp.watch([app.devPath+'**/*.html',app.devPath+'*.html'], ['html']);
+  gulp.watch([app.devPath+'less/**/*.less',app.devPath+'less/*.less'], ['doc-all']);
+  
+  gulp.watch([app.devPath+'doc/**/*.md',app.devPath+'doc/*.md'], ['md-html']);
 });
 
-gulp.task('connect-all', ['connect', 'less-dev', 'doc-concat', 'md-html', 'watch-connect']);
+gulp.task('connect-all', ['connect', 'less-dev', 'doc-concat', 'doc', 'md-html', 'watch-connect']);
 
 /* Convert markdown to html */
 //--------------------------
 gulp.task('md-html', function () {
-   return gulp.src('./dev/doc/less-shell.md')
+   return gulp.src('./dev/doc/**/*.md')
         .pipe(g.markdown())
         .pipe(gulp.dest('./dev/pages'))
         .pipe(connect.reload());
