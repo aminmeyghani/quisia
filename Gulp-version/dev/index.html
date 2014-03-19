@@ -1,13 +1,26 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
 <head>
-	<meta charset="UTF-8">
-	<title>Less-shell Docs</title>
-	<link rel="stylesheet" href="css/app.dev.css">
-	<script src="lib/js/jquery/jquery-2.0.3.js"></script>
-	<script src="js/main.js"></script>
+  <meta charset="UTF-8">
+  <title>app-components docs</title>
+  <link rel="stylesheet" href="css/app.dev.css">
+  <script src="lib/js/jquery/jquery-2.0.3.js"></script>
+  <script src="lib/js/angular/angular.js"></script>
+  <script src="lib/js/angular/angular-route.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/directives.js"></script>
+  
 </head>
+<!-- <script src="js/main.js"></script> -->
 <body>
-	<div id="page-content"></div>
+  <ul class="menu">
+    <li><a href="#/components">Components</a></li>
+    <li><a href="#/mixins">Mixins</a></li>
+  </ul>
+  <div ng-view></div>
+  
 </body>
 </html>

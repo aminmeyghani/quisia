@@ -4,7 +4,7 @@
 
 # app-mixins.less #
 
-## fix-float 
+## fix-float.
 fix-float mixin for floated elements. Creates a wrapper for the floated elements giving the box a height.
 
 ### Usage ###
