@@ -1,38 +1,77 @@
 /*
-  # app-mixins.less #
+  # Mixin Interfaces #
 */
 
-/*   ## fix-float 
-fix-float mixin for floated elements. Creates a wrapper for the floated elements giving the box a height.
+/*   
+##`.fix-float()`
+### Parameters: none ###
+
+### Description ###
+
+Can be used to wrap around floated elements. Using `fix-float`, the wrapper
+gets a height and stays in the flow of the document.
 
 ### Usage ###
   Apply the class to a wrapper div that contains floated elements.
+
+### Example ###
+
+    <div class="fix-float">
+      <div>floated div</div>
+      <div>floated div</div>
+      <div>floated div</div>
+    </div>
+***********************
 */  
 
 .fix-float:after{
   .fix-float();
 }
 
-/*
+//--------------------
 
-## box-shadow ##
-    .box-shadow-well([@blur, @speed, @color]);
-Used for making well regions. It accepts three optional parameters: 
+/*   
+##`.box-shadow([@blur, @speed, @color])`
+
+### Parameters: ###
+
+__@blur__ (optional) : The amout of shadow blur in pixels or any other valid units.
+
+__@speed__ (optional) : The amout of shadow speed in pixels or any other valid units.
+
+__@color__ (optional) : The shadow color in any valid color units.
+
+### Description ###
+
+Creats a subtle well region with a small inner shadow.
 
 ### Usage ###
+  Can be mixed in with any block-level component. The three parameters are optional.
+  It is also possible to use each parameter individually. See examples below.
 
-     .example1{
-       .box-shadow-well(@color : #000 , @blur : 20px);
-     }
+### Examples ###
+    
+    // All the examples below are block-level elements.
+    .example1{
+      .box-shadow-well(10px, 10px, #000); // using all the parameters
+    }
 
-@param {non-string} @blur the amount of blur
-@param {non-string} @speed the amount of speed
-@param {non-string} @color the color for the shadow
+    .example2{
+      .box-shadow-well(); // Calling without any parameters.
+    }
 
+    .example3{
+      // Calling with one parameter. 
+      // Note that the order of the parameter is not important.
+      .box-shadow-well(@color : #e5e6e7);
+    }
 */
+
+// box shadow definitions.
 .box-shadow-well(@blur :10px ; @speed : 0 ; @color : #000){
   .box-shadow("inset 0 0 @{blur} @{speed} @{color}");
 }
+
 //doc goes here.
 .text-stand-out(){
   .text-shadow("0px 2px 3px #555;");

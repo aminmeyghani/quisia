@@ -1,27 +1,46 @@
 <!-- Start /~Amin~/_docs+libs/QUISIA/quisia/Gulp-version/dev/less/app/app-mixins.less -->
 
-<h1 id="app-mixins-less">app-mixins.less</h1>
-<h2 id="fix-float">fix-float</h2>
-<p>fix-float mixin for floated elements. Creates a wrapper for the floated elements giving the box a height.</p>
+<h1 id="mixin-interfaces">Mixin Interfaces</h1>
+<h2 id="-fix-float-"><code>.fix-float()</code></h2>
+<h3 id="parameters-none">Parameters: none</h3>
+<h3 id="description">Description</h3>
+<p>Can be used to wrap around floated elements. Using <code>fix-float</code>, the wrapper
+gets a height and stays in the flow of the document.</p>
 <h3 id="usage">Usage</h3>
 <p>  Apply the class to a wrapper div that contains floated elements.</p>
-<h2 id="box-shadow">box-shadow</h2>
-<pre><code>.box-shadow-well([@blur, @speed, @color]);
-</code></pre><p>Used for making well regions. It accepts three optional parameters: </p>
+<h3 id="example">Example</h3>
+<pre><code>&lt;div class=&quot;fix-float&quot;&gt;
+  &lt;div&gt;floated div&lt;/div&gt;
+  &lt;div&gt;floated div&lt;/div&gt;
+  &lt;div&gt;floated div&lt;/div&gt;
+&lt;/div&gt;
+</code></pre><hr>
+<h2 id="-box-shadow-blur-speed-color-"><code>.box-shadow([@blur, @speed, @color])</code></h2>
+<h3 id="parameters-">Parameters:</h3>
+<p><strong>@blur</strong> (optional) : The amout of shadow blur in pixels or any other valid units.</p>
+<p><strong>@speed</strong> (optional) : The amout of shadow speed in pixels or any other valid units.</p>
+<p><strong>@color</strong> (optional) : The shadow color in any valid color units.</p>
+<h3 id="description">Description</h3>
+<p>Creats a subtle well region with a small inner shadow.</p>
 <h3 id="usage">Usage</h3>
-<pre><code> .example1{
-   .box-shadow-well(@color : #000 , @blur : 20px);
- }
-</code></pre><h3 id="params-">Params:</h3>
-<ul>
-<li><p><strong>non-string</strong> <em>@blur</em> the amount of blur</p>
-</li>
-<li><p><strong>non-string</strong> <em>@speed</em> the amount of speed</p>
-</li>
-<li><p><strong>non-string</strong> <em>@color</em> the color for the shadow</p>
-</li>
-</ul>
-<h2 id="-smooth-duration-">.smooth([@duration])</h2>
+<p>  Can be mixed in with any block-level component. The three parameters are optional.
+  It is also possible to use each parameter individually. See examples below.</p>
+<h3 id="examples">Examples</h3>
+<pre><code>// All the examples below are block-level elements.
+.example1{
+  .box-shadow-well(10px, 10px, #000); // using all the parameters
+}
+
+.example2{
+  .box-shadow-well(); // Calling without any parameters.
+}
+
+.example3{
+  // Calling with one parameter. 
+  // Note that the order of the parameter is not important.
+  .box-shadow-well(@color : #e5e6e7);
+}
+</code></pre><h2 id="-smooth-duration-">.smooth([@duration])</h2>
 <p>  Adds CSS3 transition for the opacity property.</p>
 <h3 id="usage">Usage</h3>
 <pre><code>a{

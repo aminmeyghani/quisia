@@ -2,31 +2,62 @@
 
 <!-- Start /~Amin~/_docs+libs/QUISIA/quisia/Gulp-version/dev/less/app/app-mixins.less -->
 
-# app-mixins.less #
+# Mixin Interfaces #
 
-## fix-float 
-fix-float mixin for floated elements. Creates a wrapper for the floated elements giving the box a height.
+##`.fix-float()`
+### Parameters: none ###
+
+### Description ###
+
+Can be used to wrap around floated elements. Using `fix-float`, the wrapper
+gets a height and stays in the flow of the document.
 
 ### Usage ###
   Apply the class to a wrapper div that contains floated elements.
 
-## box-shadow ##
-    .box-shadow-well([@blur, @speed, @color]);
-Used for making well regions. It accepts three optional parameters: 
+### Example ###
+
+    <div class="fix-float">
+      <div>floated div</div>
+      <div>floated div</div>
+      <div>floated div</div>
+    </div>
+**********************
+
+##`.box-shadow([@blur, @speed, @color])`
+
+### Parameters: ###
+
+__@blur__ (optional) : The amout of shadow blur in pixels or any other valid units.
+
+__@speed__ (optional) : The amout of shadow speed in pixels or any other valid units.
+
+__@color__ (optional) : The shadow color in any valid color units.
+
+### Description ###
+
+Creats a subtle well region with a small inner shadow.
 
 ### Usage ###
+  Can be mixed in with any block-level component. The three parameters are optional.
+  It is also possible to use each parameter individually. See examples below.
 
-     .example1{
-       .box-shadow-well(@color : #000 , @blur : 20px);
-     }
+### Examples ###
+    
+    // All the examples below are block-level elements.
+    .example1{
+      .box-shadow-well(10px, 10px, #000); // using all the parameters
+    }
 
-### Params: 
+    .example2{
+      .box-shadow-well(); // Calling without any parameters.
+    }
 
-* **non-string** *@blur* the amount of blur
-
-* **non-string** *@speed* the amount of speed
-
-* **non-string** *@color* the color for the shadow
+    .example3{
+      // Calling with one parameter. 
+      // Note that the order of the parameter is not important.
+      .box-shadow-well(@color : #e5e6e7);
+    }
 
 ## .smooth([@duration]) ##
   Adds CSS3 transition for the opacity property.

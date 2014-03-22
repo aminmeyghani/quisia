@@ -22,7 +22,12 @@
     "gulp-load-plugins": "~0.4.0",
     "gulp-connect": "~1.0.7",
     "gulp-markdown": "~0.1.2",
-    "stream-combiner": "0.0.4"
+    "stream-combiner": "0.0.4",
+    "gulp-docco": "0.0.3",
+    "gulp-styledocco": "0.0.1",
+    "gulp-jsdoc": "~0.1.0",
+    "gulp-todo": "~0.1.5",
+    "escape-html": "~1.0.1"
   },
   "dependencies": {
     "gulp": "~3.5.5"
