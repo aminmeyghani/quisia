@@ -4,13 +4,14 @@
 
 # Mixin Interfaces #
 
-##`.fix-float()`
-### Parameters: none ###
+##`.fix-float()`##
 
 ### Description ###
 
 Can be used to wrap around floated elements. Using `fix-float`, the wrapper
 gets a height and stays in the flow of the document.
+
+### Parameters: none ###
 
 ### Usage ###
   Apply the class to a wrapper div that contains floated elements.
@@ -26,6 +27,10 @@ gets a height and stays in the flow of the document.
 
 ##`.box-shadow([@blur, @speed, @color])`
 
+### Description ###
+
+Creats a subtle well region with a small inner shadow.
+
 ### Parameters: ###
 
 __@blur__ (optional) : The amout of shadow blur in pixels or any other valid units.
@@ -33,10 +38,6 @@ __@blur__ (optional) : The amout of shadow blur in pixels or any other valid uni
 __@speed__ (optional) : The amout of shadow speed in pixels or any other valid units.
 
 __@color__ (optional) : The shadow color in any valid color units.
-
-### Description ###
-
-Creats a subtle well region with a small inner shadow.
 
 ### Usage ###
   Can be mixed in with any block-level component. The three parameters are optional.
@@ -59,20 +60,26 @@ Creats a subtle well region with a small inner shadow.
       .box-shadow-well(@color : #e5e6e7);
     }
 
-## .smooth([@duration]) ##
-  Adds CSS3 transition for the opacity property.
+##`.smooth(@duration)`
+
+### Description ###
+
+Animates the opacity property of an element using CSS3 transitions.
+
+### Parameters: ###
+
+__@duration__ : The animation duration. Can be either expressed in `ms` or `s`.
 
 ### Usage ###
-    a{
-      .snooth(200ms);
-        &:hover{
-        .smooth(500ms);
-        }
+  Can be mixed in with elements that have different states, like hover or active.
+  See the example below
+
+### Examples ###
+
+    // Adding transition to all of the links
+    a, a:hover{
+      .smooth(200ms);
     }
-
-### Params: 
-
-* **non-string** *@duration* passed in either as milliseconds or seconds. 200ms or 3s are valid values.
 
 <!-- End /~Amin~/_docs+libs/QUISIA/quisia/Gulp-version/dev/less/app/app-mixins.less -->
 

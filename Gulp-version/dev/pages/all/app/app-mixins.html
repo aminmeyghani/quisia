@@ -2,10 +2,10 @@
 
 <h1 id="mixin-interfaces">Mixin Interfaces</h1>
 <h2 id="-fix-float-"><code>.fix-float()</code></h2>
-<h3 id="parameters-none">Parameters: none</h3>
 <h3 id="description">Description</h3>
 <p>Can be used to wrap around floated elements. Using <code>fix-float</code>, the wrapper
 gets a height and stays in the flow of the document.</p>
+<h3 id="parameters-none">Parameters: none</h3>
 <h3 id="usage">Usage</h3>
 <p>  Apply the class to a wrapper div that contains floated elements.</p>
 <h3 id="example">Example</h3>
@@ -16,12 +16,12 @@ gets a height and stays in the flow of the document.</p>
 &lt;/div&gt;
 </code></pre><hr>
 <h2 id="-box-shadow-blur-speed-color-"><code>.box-shadow([@blur, @speed, @color])</code></h2>
+<h3 id="description">Description</h3>
+<p>Creats a subtle well region with a small inner shadow.</p>
 <h3 id="parameters-">Parameters:</h3>
 <p><strong>@blur</strong> (optional) : The amout of shadow blur in pixels or any other valid units.</p>
 <p><strong>@speed</strong> (optional) : The amout of shadow speed in pixels or any other valid units.</p>
 <p><strong>@color</strong> (optional) : The shadow color in any valid color units.</p>
-<h3 id="description">Description</h3>
-<p>Creats a subtle well region with a small inner shadow.</p>
 <h3 id="usage">Usage</h3>
 <p>  Can be mixed in with any block-level component. The three parameters are optional.
   It is also possible to use each parameter individually. See examples below.</p>
@@ -40,18 +40,18 @@ gets a height and stays in the flow of the document.</p>
   // Note that the order of the parameter is not important.
   .box-shadow-well(@color : #e5e6e7);
 }
-</code></pre><h2 id="-smooth-duration-">.smooth([@duration])</h2>
-<p>  Adds CSS3 transition for the opacity property.</p>
+</code></pre><h2 id="-smooth-duration-"><code>.smooth(@duration)</code></h2>
+<h3 id="description">Description</h3>
+<p>Animates the opacity property of an element using CSS3 transitions.</p>
+<h3 id="parameters-">Parameters:</h3>
+<p><strong>@duration</strong> : The animation duration. Can be either expressed in <code>ms</code> or <code>s</code>.</p>
 <h3 id="usage">Usage</h3>
-<pre><code>a{
-  .snooth(200ms);
-    &amp;:hover{
-    .smooth(500ms);
-    }
+<p>  Can be mixed in with elements that have different states, like hover or active.
+  See the example below</p>
+<h3 id="examples">Examples</h3>
+<pre><code>// Adding transition to all of the links
+a, a:hover{
+  .smooth(200ms);
 }
-</code></pre><h3 id="params-">Params:</h3>
-<ul>
-<li><strong>non-string</strong> <em>@duration</em> passed in either as milliseconds or seconds. 200ms or 3s are valid values.</li>
-</ul>
-<!-- End /~Amin~/_docs+libs/QUISIA/quisia/Gulp-version/dev/less/app/app-mixins.less -->
+</code></pre><!-- End /~Amin~/_docs+libs/QUISIA/quisia/Gulp-version/dev/less/app/app-mixins.less -->
 
