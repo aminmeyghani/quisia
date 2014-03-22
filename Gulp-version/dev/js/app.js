@@ -12,5 +12,7 @@ angular.module('myApp', [
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/components', {templateUrl: 'pages/all/app/app-components.html', controller: 'MyCtrl1'});
   $routeProvider.when('/mixins', {templateUrl: 'pages/all/app/app-mixins.html', controller: 'MyCtrl2'});
-  $routeProvider.otherwise({redirectTo: '/components'});
+  $routeProvider.when('/utils', {templateUrl: 'pages/all/_/_globals/_utils.html', controller: 'MyCtrl2'});
+  $routeProvider.when('/toc', {templateUrl: 'toc.html', controller: 'MyCtrl2'});
+  $routeProvider.otherwise({redirectTo: '/toc'});
 }]);

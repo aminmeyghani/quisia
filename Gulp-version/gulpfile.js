@@ -4,6 +4,7 @@ var connect = require('gulp-connect');
 var docco = require("gulp-docco");
 var gulp = require("gulp");
 var g = require("gulp-load-plugins")();
+// var escape = require('escape-html');
 var app  = {
 	devPath : './dev/',
 	lessRoot : './dev/less/',
@@ -89,6 +90,8 @@ gulp.task("less-dev", function(){
 //--------------
 gulp.task("doc-concat", ['less-dev'], function(){
 	return gulp.src(app.lessRoot+"**/*.less")
+  //more optinos:
+  //https://github.com/cbou/markdox
 	.pipe(g.markdox())
 	.pipe(g.concat("less-shell.md"))
 	.pipe(gulp.dest(app.docPath))
@@ -98,6 +101,7 @@ gulp.task("doc-concat", ['less-dev'], function(){
 // http://stackoverflow.com/questions/22123958/failing-to-get-updated-contents-of-a-file-after-gulp-stream-completes
 gulp.task("doc", function(){
 	return gulp.src(app.lessRoot+"**/*.less")
+  // https://github.com/cbou/markdox
 	.pipe(g.markdox())
 	.pipe(g.rename({extname: '.md'}))
 	.pipe(gulp.dest(app.docPath+"all"))
