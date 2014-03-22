@@ -73,7 +73,7 @@ Used for making well regions. It accepts three optional parameters:
 ### Usage ###
     a{
       .snooth(200ms);
-        &amp;:hover{
+        &:hover{
         .smooth(500ms);
         }
     }
