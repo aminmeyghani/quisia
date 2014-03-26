@@ -6,12 +6,18 @@
       <ul>
         <li>LESS docs</li>
         <ul>
-          <li><a href="#/components">Components</a>
+          <li><a href="#/docs/app-base" ng-class='isActive("app-base")'>Base</a>
           </li>
-          <li><a href="#/mixins">Mixins</a>
+          <li><a href="#/docs/app-components" ng-class='isActive("app-components")'>Components</a>
           </li>
-          <li><a href="#/utils">Utilities</a>
+
+          <li><a href="#/docs/app-mixins" ng-class='isActive("app-mixins")'>Mixins</a>
           </li>
+          <li><a href="#/docs/app-modules" ng-class='isActive("app-modules")'>modules</a>
+          </li>
+          <li><a href="#/docs/app-variables" ng-class='isActive("app-variables")'>variables</a>
+          </li>
+          
         </ul>
       </ul>
       <ul>
@@ -52,9 +58,6 @@
     </div>
   </div>
 
-
-  <h1>
-    {{$routeParams}}
-  </h1>
-  <div class="col-sm-8" ng-include="'/pages/all/app/app-mixins.html'"></div>
+  <div class="col-sm-8" ng-include="'/pages/all/app/'+router.docName+'.html'"></div>
+  
   <!-- </div> -->
