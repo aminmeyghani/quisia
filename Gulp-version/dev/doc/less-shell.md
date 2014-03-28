@@ -10,7 +10,7 @@
 <!-- Start /~Amin~/_docs+libs/QUISIA/quisia/Gulp-version/dev/less/app/app-base.less -->
 
 # Base #
- Contains the base HTML styles.
+ Contains the base HTML styles. The elements that are targeed are mainly for resetting purposes.
 
 <!-- End /~Amin~/_docs+libs/QUISIA/quisia/Gulp-version/dev/less/app/app-base.less -->
 
@@ -84,7 +84,7 @@ gets a height and stays in the flow of the document.
     </div>
 **********************
 
-##`.box-shadow([@blur, @speed, @color])`
+##`.box-shadow-well([@blur, @speed, @color])`
 
 ### Description ###
 

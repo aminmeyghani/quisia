@@ -25,7 +25,7 @@ gets a height and stays in the flow of the document.
     </div>
 **********************
 
-##`.box-shadow([@blur, @speed, @color])`
+##`.box-shadow-well([@blur, @speed, @color])`
 
 ### Description ###
 

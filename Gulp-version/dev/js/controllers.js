@@ -7,6 +7,7 @@ angular.module('myApp.controllers', []).
 
   }])
   .controller('MyCtrl2', [function() {
+    console.log("changing view and triggering myctrl2")
 
   }])
   .controller('SampleCtrl', ['$scope',function($scope) {
