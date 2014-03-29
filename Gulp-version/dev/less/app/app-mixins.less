@@ -157,6 +157,49 @@ when not((@how-many)=0) and  (@unit=px) {
 
 
 
+// generating fibo
+
+
+
+
+.fibo( @n,@unit) {
+  font-size: ~`
+    (function(n,unit){ 
+        var previous; // previous value
+  var current; // current value
+  var temp; // temporary storage
+
+  if (n == 0){
+      return n + unit;  
+    }else{
+    previous = 1;   current = 1;
+    for (i = 3; i<=n; i++){
+      temp = previous + current;
+      previous  = current;
+      current = temp;
+    }
+     return current+unit;
+   }
+  })( "@{n}", "@{unit}" )`;
+    
+}
+
+.make-fs(  @base-size ; @how-many ; @unit; @j : 1  ;  @_s:0 ; @step-size  )
+when not((@how-many)=0) and  (@unit=px) {
+
+
+  @size : @base-size+@_s;
+  .fs-@{j}{
+    .fibo(@_s,px);
+      // : ~"@{size}@{unit}";
+  }
+  .make-fs(  @base-size ,  (@how-many - 1), @unit ,
+    (@j + 1) ,  (@_s+@step-size) , @step-size );
+}
+
+
+.make-fs(@base-size:3,  @step-size : 1, @how-many:5 , @unit : px, @_s:5 );
+
 
 
 
