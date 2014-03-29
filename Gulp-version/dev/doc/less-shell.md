@@ -140,6 +140,25 @@ __@duration__ : The animation duration. Can be either expressed in `ms` or `s`.
       .smooth(200ms);
     }
 
+##`.make-font-size(@base-size , @step-size , @how-many-sizes)`
+
+### Description ###
+
+Creates different font size classes given the base font size and the number of 
+font sizes needed with a step size.
+
+### Parameters: ###
+
+__@base-size__  : The font size used to calculate the other font sizes from
+__@step-size  : The distance between each iteration.
+__@how-many-size  : The number of font size classes needed:
+
+### Usage ###
+  this is how you can use it, just mix it in with your less and there you go
+
+### Examples ###
+    example starts here
+
 <!-- End /~Amin~/_docs+libs/QUISIA/quisia/Gulp-version/dev/less/app/app-mixins.less -->
 
 

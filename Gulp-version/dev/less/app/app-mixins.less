@@ -105,7 +105,28 @@ __@duration__ : The animation duration. Can be either expressed in `ms` or `s`.
 .smooth-bg(@duration : @animation-duration){
   transition : background @duration @animation-timing-function; 
 }
-// doc goes here.
+
+/*   
+##`.make-font-size(@base-size , @step-size , @how-many-sizes)`
+
+### Description ###
+
+Creates different font size classes given the base font size and the number of 
+font sizes needed with a step size.
+
+### Parameters: ###
+
+__@base-size__  : The font size used to calculate the other font sizes from
+__@step-size  : The distance between each iteration.
+__@how-many-size  : The number of font size classes needed:
+
+### Usage ###
+  this is how you can use it, just mix it in with your less and there you go
+
+### Examples ###
+    example starts here
+*/
+
 .make-fs(@fs-upper-bound);
 .make-fs( @i: @fs-lower-bound ; @j : 1) when not(@i=0) {
   @v : (@i)/(1/((@_base-fs)))/100;
@@ -114,6 +135,27 @@ __@duration__ : The animation duration. Can be either expressed in `ms` or `s`.
   }
   .make-fs( (@i - @fs-steps), (@j + 1));
 }
+
+// the closest that i got to it.
+
+
+
+.make-fs(  @base-size ; @how-many ; @unit; @j : 1  ;  @_s:0 ; @step-size  )
+when not((@how-many)=0) and  (@unit=px) {
+
+
+  @size : @base-size+@_s;
+  .fs-@{j}{
+    font-size : ~"@{size}@{unit}";
+  }
+  .make-fs(  @base-size ,  (@how-many - 1), @unit ,
+    (@j + 1) ,  (@_s+@step-size) , @step-size );
+}
+
+
+//.make-fs(@base-size:13,  @step-size : 4, @how-many:5 , @unit : px );
+
+
 
 
 
