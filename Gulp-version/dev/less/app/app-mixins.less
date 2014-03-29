@@ -1,6 +1,6 @@
 /*
   # Mixin Interfaces #
-*/
+  */
 
 /*   
 ##`.fix-float()`##
@@ -66,7 +66,7 @@ __@color__ (optional) : The shadow color in any valid color units.
       // Note that the order of the parameter is not important.
       .box-shadow-well(@color : #e5e6e7);
     }
-*/
+    */
 
 // box shadow definitions.
 .box-shadow-well(@blur :10px ; @speed : 0 ; @color : #000){
@@ -97,14 +97,14 @@ __@duration__ : The animation duration. Can be either expressed in `ms` or `s`.
       .smooth(200ms);
     }
     
-*/
+    */
 
-.smooth(@duration : @animation-duration){
-  transition : opacity @duration @animation-timing-function;
-}
-.smooth-bg(@duration : @animation-duration){
-  transition : background @duration @animation-timing-function; 
-}
+    .smooth(@duration : @animation-duration){
+      transition : opacity @duration @animation-timing-function;
+    }
+    .smooth-bg(@duration : @animation-duration){
+      transition : background @duration @animation-timing-function; 
+    }
 
 /*   
 ##`.make-font-size(@base-size , @step-size , @how-many-sizes)`
@@ -125,16 +125,16 @@ __@how-many-size  : The number of font size classes needed:
 
 ### Examples ###
     example starts here
-*/
+    */
 
-.make-fs(@fs-upper-bound);
-.make-fs( @i: @fs-lower-bound ; @j : 1) when not(@i=0) {
-  @v : (@i)/(1/((@_base-fs)))/100;
-  .fs-@{j}{
-    font-size : ~"@{v}em";
-  }
-  .make-fs( (@i - @fs-steps), (@j + 1));
-}
+    .make-fs(@fs-upper-bound);
+    .make-fs( @i: @fs-lower-bound ; @j : 1) when not(@i=0) {
+      @v : (@i)/(1/((@_base-fs)))/100;
+      .fs-@{j}{
+        font-size : ~"@{v}em";
+      }
+      .make-fs( (@i - @fs-steps), (@j + 1));
+    }
 
 // the closest that i got to it.
 
@@ -158,47 +158,39 @@ when not((@how-many)=0) and  (@unit=px) {
 
 
 // generating fibo
-
-
-
-
 .fibo( @n,@unit) {
   font-size: ~`
     (function(n,unit){ 
-        var previous; // previous value
-  var current; // current value
-  var temp; // temporary storage
-
+    var previous, current, temp; 
   if (n == 0){
       return n + unit;  
     }else{
     previous = 1;   current = 1;
     for (i = 3; i<=n; i++){
-      temp = previous + current;
-      previous  = current;
+      temp = previous + current;      previous  = current;
       current = temp;
+
     }
      return current+unit;
    }
-  })( "@{n}", "@{unit}" )`;
-    
+   })( "@{n}", "@{unit}" )`;
+
 }
 
-.make-fs(  @base-size ; @how-many ; @unit; @j : 1  ;  @_s:0 ; @step-size  )
+.make-fs(   @how-many ; @unit; @j : 1  ;  @first-term:0 ; @step-size:1 )
 when not((@how-many)=0) and  (@unit=px) {
 
 
-  @size : @base-size+@_s;
+
   .fs-@{j}{
-    .fibo(@_s,px);
-      // : ~"@{size}@{unit}";
+    .fibo(@first-term,@unit);
+    }
+    .make-fs(   (@how-many - 1), @unit ,
+      (@j + 1) ,  (@first-term+@step-size) , @step-size );
   }
-  .make-fs(  @base-size ,  (@how-many - 1), @unit ,
-    (@j + 1) ,  (@_s+@step-size) , @step-size );
-}
 
 
-.make-fs(@base-size:3,  @step-size : 1, @how-many:5 , @unit : px, @_s:5 );
+  .make-fs( @how-many:5 , @first-term:7, @unit : px );
 
 
 
