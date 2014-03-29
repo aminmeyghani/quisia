@@ -157,8 +157,8 @@ when not((@how-many)=0) and  (@unit=px) {
 
 
 
-.fibo( @n,@unit) {
-  font-size: ~`
+.fibo( @n,@unit,@selector) {
+  @{selector}: ~`
     (function(n,unit){ 
     var previous, current, temp; 
   if (n == 0){
@@ -172,7 +172,7 @@ when not((@how-many)=0) and  (@unit=px) {
     }
      return current+unit;
    }
-   })( "@{n}", "@{unit}" )`;
+  })( "@{n}", "@{unit}", "@{selector}" )`;
 
 }
 
@@ -182,14 +182,15 @@ when not((@how-many)=0)  {
 
 
   .@{class-name}-@{j}{
-    .fibo(@starting-term,~"@{unit}");
+    .fibo(@starting-term,~"@{unit}",width);
+     .fibo(@starting-term,~"@{unit}",font-size);
     }
     .make-fibo-for(   (@how-many - 1), @unit ,
       (@j + 1) ,  (@starting-term+@step-size) , @step-size , @class-name );
   }
 
 
-  .make-fibo-for( @how-many:100 , @starting-term:0, @unit : "%", @class-name: grid );
+  .make-fibo-for( @how-many:9 , @starting-term:5, @unit : "%", @class-name: grid );
 
 
 
