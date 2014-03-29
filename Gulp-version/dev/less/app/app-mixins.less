@@ -157,7 +157,6 @@ when not((@how-many)=0) and  (@unit=px) {
 
 
 
-// generating fibo
 .fibo( @n,@unit) {
   font-size: ~`
     (function(n,unit){ 
@@ -177,20 +176,20 @@ when not((@how-many)=0) and  (@unit=px) {
 
 }
 
-.make-fs(   @how-many ; @unit; @j : 1  ;  @first-term:0 ; @step-size:1 )
-when not((@how-many)=0) and  (@unit=px) {
+.make-fibo-for(   @how-many ; @unit; @j : 1  ;  @starting-term:0 ; @step-size:1  ; @class-name )
+when not((@how-many)=0)  {
 
 
 
-  .fs-@{j}{
-    .fibo(@first-term,@unit);
+  .@{class-name}-@{j}{
+    .fibo(@starting-term,~"@{unit}");
     }
-    .make-fs(   (@how-many - 1), @unit ,
-      (@j + 1) ,  (@first-term+@step-size) , @step-size );
+    .make-fibo-for(   (@how-many - 1), @unit ,
+      (@j + 1) ,  (@starting-term+@step-size) , @step-size , @class-name );
   }
 
 
-  .make-fs( @how-many:5 , @first-term:7, @unit : px );
+  .make-fibo-for( @how-many:100 , @starting-term:0, @unit : "%", @class-name: grid );
 
 
 
