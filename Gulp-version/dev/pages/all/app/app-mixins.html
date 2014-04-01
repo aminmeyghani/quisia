@@ -53,17 +53,156 @@ gets a height and stays in the flow of the document.</p>
 a, a:hover{
   .smooth(200ms);
 }
-</code></pre><h2 id="-make-font-size-base-size-step-size-how-many-sizes-"><code>.make-font-size(@base-size , @step-size , @how-many-sizes)</code></h2>
+</code></pre><h2 id="-make-fs-base-size-how-many-unit-step-size-"><code>.make-fs(  @base-size ; @how-many ; @unit; @step-size  )</code></h2>
 <h3 id="description">Description</h3>
 <p>Creates different font size classes given the base font size and the number of 
 font sizes needed with a step size.</p>
 <h3 id="parameters-">Parameters:</h3>
-<p><strong>@base-size</strong>  : The font size used to calculate the other font sizes from
-<strong>@step-size  : The distance between each iteration.
-</strong>@how-many-size  : The number of font size classes needed:</p>
+<p><strong>@base-size</strong>  : <strong>integer</strong> The starting font size value.</p>
+<p><strong>@how-many</strong>  : <strong>integer</strong> The number of font size classes created as an integer.</p>
+<p><strong>@unit</strong>  : <strong>string/non-string</strong>T he unit used to generate the font sizes. Any other unit can be passed, but make
+sure to pass the <code>%</code> unit as a string.</p>
+<p><strong>@step-size</strong> <strong>integer</strong>  : The distance between each font size. For example, if the <code>step-size</code> is 2 and 
+the base <code>base-size</code> is 14, for three font classes you will get: <code>14, 16, 18</code></p>
 <h3 id="usage">Usage</h3>
-<p>  this is how you can use it, just mix it in with your less and there you go</p>
+<p>  Can be used independently in a LESS file to create custom font 
+  size classes with a single call. Look at the examples below for more information. <code>Note</code> that
+  for the mixin to work properly, it is best to pass in the parameters explicitly with the name
+  of the variables. This way you can avoid potential problems and confusion.</p>
 <h3 id="examples">Examples</h3>
-<pre><code>example starts here
+<pre><code>// using the default unit value.
+
+ .make-fs(@base-size: 13, @how-many:4, @step-size:4);
+ //-&gt;
+ .fs-1 {
+   font-size: 13px;
+ }
+ .fs-2 {
+   font-size: 17px;
+ }
+ .fs-3 {
+   font-size: 21px;
+ }
+ .fs-4 {
+   font-size: 25px;
+ }
+
+ //using custom font size unit.
+
+ .make-fs(@base-size: 13, @how-many:4, @step-size:4, @unit : &#39;%&#39;);
+
+ //-&gt;
+
+ .fs-1 {
+   font-size: 13%;
+ }
+ .fs-2 {
+   font-size: 17%;
+ }
+ .fs-3 {
+   font-size: 21%;
+ }
+ .fs-4 {
+   font-size: 25%;
+ }
+</code></pre><h2 id="-fibo-n-unit-property-"><code>.fibo(@n, @unit, @property)</code></h2>
+<h3 id="description">Description</h3>
+<p>Can be used to assign numbers in the fibonacci sequence to any CSS property. The mixin requires three
+parameters: the sequence term, the unit and the CSS property.</p>
+<h3 id="parameters-">Parameters:</h3>
+<p><strong>@n</strong>  : The nth term of the fibonacci sequence.</p>
+<p><strong>@unit</strong>  : The unit used for the CSS property. If you need to pass in the <code>%</code> unit, you should
+escape the value when passing to the mixin:  <code>.fibo(14,e(&#39;%&#39;),width);</code> or <code>.fibo(12,~&#39;%&#39;,width);</code></p>
+<p><strong>@property</strong>  : The CSS property.</p>
+<h3 id="usage">Usage</h3>
+<p>  Used inside another class or id, cannot be called directly, should be mixed in.</p>
+<h3 id="examples">Examples</h3>
+<pre><code>// Creating a golden rectangle.
+
+.golden-rectangle{
+  .fibo(14,px,width);
+  .fibo(15,px,height);
+}
+
+//-&gt;
+
+.golden-rectangle {
+  width: 377px;
+  height: 610px;
+}
+
+//ratio : 377/610 ~ 0.61803
+
+// passing the % unit.
+
+.golden-rectangle{
+  .fibo(14,e(&#39;%&#39;),width);
+  .fibo(15,e(&#39;%&#39;),height);
+}
+
+//-&gt;
+.golden-rectangle {
+  width: 377%;
+  height: 610%;
+}
+</code></pre><h2 id="-make-fibo-for-how-many-starting-term-unit-step-size-class-name-property-"><code>.make-fibo-for(@how-many, @starting-term [, @unit, @step-size, @class-name, @property])</code></h2>
+<h3 id="description">Description</h3>
+<p>Makes font sizes by default based on the fibonacci sequence. You can also target another property
+such as width with a custom class.</p>
+<h3 id="parameters-">Parameters:</h3>
+<p><strong>@how-many</strong> : The number of terms that you need. For example, if you pass in 3 with starting term of
+5, you will get 5, 8 ,13.</p>
+<p><strong>@starting-term</strong> : The starting term that you want to start the sequence from. If you pass 5,<br>then you will get 5, 8, 13,... for example.</p>
+<p><strong>@unit</strong> (optional) : The unit used for the property. By default the unit is <code>px</code>. You can pass in other
+units, but make sure to pass in the <code>%</code> unit as a string. That is: <code>.make-fibo-for(@unit: &#39;%&#39;, @how-many: 2 ...);</code></p>
+<p><strong>@stepsize</strong> (optional) : is the distance between the generated classes. The default value is one 
+which by default produces <code>fs-1, fs-2,...</code>.</p>
+<p><strong>@class-name</strong> (optional) : The sequential generated class. By default the class name is <code>fs</code>. You
+can pass other names such as my-selector: <code>.make-fibo-for(@class-name: my-selector, ...);</code> 
+//-&gt; my-selector-1, my-selector-2, .... </p>
+<p><strong>@property</strong> (optional) : The CSS property that you need to target. By default this is set to <code>font-size</code>.
+You can target the <code>width</code> property for example: <code>.make-fibo-for(@property : width, @how-many:2, ...);</code>.</p>
+<h3 id="usage">Usage</h3>
+<p>  You can use this mixin independently in you LESS file and the classes will be generated automatically.</p>
+<h3 id="examples">Examples</h3>
+<pre><code>// Using the default values and just specifying the number of terms and the starting term.
+
+.make-fibo-for( @how-many:5 , @starting-term:6 );
+//-&gt;
+.fs-1 {
+  font-size: 8px;
+}
+.fs-2 {
+  font-size: 13px;
+}
+.fs-3 {
+  font-size: 21px;
+}
+.fs-4 {
+  font-size: 34px;
+}
+.fs-5 {
+  font-size: 55px;
+}
+
+// Creating classes for the width property with custom class names and custom unit.
+
+.make-fibo-for( @how-many:5 , @starting-term:6 , @unit:&#39;%&#39;, @property : width, @class-name : mygrid);
+
+.mygrid-1 {
+  width: 8%;
+}
+.mygrid-2 {
+  width: 13%;
+}
+.mygrid-3 {
+  width: 21%;
+}
+.mygrid-4 {
+  width: 34%;
+}
+.mygrid-5 {
+  width: 55%;
+}
 </code></pre><!-- End /~Amin~/_docs+libs/QUISIA/quisia/Gulp-version/dev/less/app/app-mixins.less -->
 
