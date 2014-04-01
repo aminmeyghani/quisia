@@ -1,7 +1,7 @@
 <div class="row">
   <h1 style="padding-left:7px;"><a href="/">Demos</a>
   </h1>
-  <div class="col-sm-4">
+  <div class="col-sm-12">
     <div style="border-right:1px solid #e5e6e7;">
       <ul>
         <li>Components Demos</li>
@@ -9,11 +9,12 @@
           <li><a href="#/demos/buttons" ng-class='isActive("buttons")'>Buttons</a></li>
           <li><a href="#/demos/layouts" ng-class='isActive("layouts")'>Layouts</a></li>
           <li><a href="#/demos/animations" ng-class='isActive("animations")'>Animations</a></li>
+          <li><a href="#/demos/mixins" ng-class='isActive("mixins")'>Mixins</a></li>
         </ul>
       </ul>
     </div>
 
   </div>
-  <div class="col-sm-8" ng-include="'/pages/demos/'+router.demoName+'.html'"></div>
+  <div class="col-sm-12" ng-include="'/pages/demos/'+router.demoName+'.html'"></div>
 
 </div>

@@ -159,6 +159,9 @@ sure to pass the `%` unit as a string.
 __@step-size__ **integer**  : The distance between each font size. For example, if the `step-size` is 2 and 
 the base `base-size` is 14, for three font classes you will get: `14, 16, 18`
 
+__@selector__ **string/non-string**  : The selector used. By default the selector is `.fs-`. Make 
+sure to escape the selector if you need
+
 ### Usage ###
   Can be used independently in a LESS file to create custom font 
   size classes with a single call. Look at the examples below for more information. `Note` that
@@ -200,6 +203,25 @@ the base `base-size` is 14, for three font classes you will get: `14, 16, 18`
      }
      .fs-4 {
        font-size: 25%;
+     }
+
+     // using a custom selector.
+
+     .make-fs(@base-size: 13, @how-many:4, @step-size:4, @unit : 'px', @selector : h );
+
+     //->
+
+     h1 {
+       font-size: 13px;
+     }
+     h2 {
+       font-size: 17px;
+     }
+     h3 {
+       font-size: 21px;
+     }
+     h4 {
+       font-size: 25px;
      }
 
 ##`.fibo(@n, @unit, @property)`
@@ -322,6 +344,25 @@ You can target the `width` property for example: `.make-fibo-for(@property : wid
     .mygrid-5 {
       width: 55%;
     }
+  
+  // using custom selectors
+  .make-fibo-for( @how-many:5 , @starting-term:6 , @unit:'%', @property : width, @class-name : ~"gs .fs-");
+  //->
+  .gs .fs-1 {
+    width: 8%;
+  }
+  .gs .fs-2 {
+    width: 13%;
+  }
+  .gs .fs-3 {
+    width: 21%;
+  }
+  .gs .fs-4 {
+    width: 34%;
+  }
+  .gs .fs-5 {
+    width: 55%;
+  }
 
 <!-- End /~Amin~/_docs+libs/QUISIA/quisia/Gulp-version/dev/less/app/app-mixins.less -->
 
@@ -350,6 +391,13 @@ Reusable modules that are composed from components.
 #Variables
 
 <!-- End /~Amin~/_docs+libs/QUISIA/quisia/Gulp-version/dev/less/app/app-variables.less -->
+
+
+
+
+<!-- Start /~Amin~/_docs+libs/QUISIA/quisia/Gulp-version/dev/less/app/demo.less -->
+
+<!-- End /~Amin~/_docs+libs/QUISIA/quisia/Gulp-version/dev/less/app/demo.less -->
 
 
 

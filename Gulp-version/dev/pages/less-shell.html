@@ -118,6 +118,8 @@ font sizes needed with a step size.</p>
 sure to pass the <code>%</code> unit as a string.</p>
 <p><strong>@step-size</strong> <strong>integer</strong>  : The distance between each font size. For example, if the <code>step-size</code> is 2 and 
 the base <code>base-size</code> is 14, for three font classes you will get: <code>14, 16, 18</code></p>
+<p><strong>@selector</strong> <strong>string/non-string</strong>  : The selector used. By default the selector is <code>.fs-</code>. Make 
+sure to escape the selector if you need</p>
 <h3 id="usage">Usage</h3>
 <p>  Can be used independently in a LESS file to create custom font 
   size classes with a single call. Look at the examples below for more information. <code>Note</code> that
@@ -158,6 +160,25 @@ the base <code>base-size</code> is 14, for three font classes you will get: <cod
  }
  .fs-4 {
    font-size: 25%;
+ }
+
+ // using a custom selector.
+
+ .make-fs(@base-size: 13, @how-many:4, @step-size:4, @unit : &#39;px&#39;, @selector : h );
+
+ //-&gt;
+
+ h1 {
+   font-size: 13px;
+ }
+ h2 {
+   font-size: 17px;
+ }
+ h3 {
+   font-size: 21px;
+ }
+ h4 {
+   font-size: 25px;
  }
 </code></pre><h2 id="-fibo-n-unit-property-"><code>.fibo(@n, @unit, @property)</code></h2>
 <h3 id="description">Description</h3>
@@ -258,7 +279,25 @@ You can target the <code>width</code> property for example: <code>.make-fibo-for
 .mygrid-5 {
   width: 55%;
 }
-</code></pre><!-- End /~Amin~/_docs+libs/QUISIA/quisia/Gulp-version/dev/less/app/app-mixins.less -->
+</code></pre><p>  // using custom selectors
+  .make-fibo-for( @how-many:5 , @starting-term:6 , @unit:&#39;%&#39;, @property : width, @class-name : ~&quot;gs .fs-&quot;);
+  //-&gt;
+  .gs .fs-1 {
+    width: 8%;
+  }
+  .gs .fs-2 {
+    width: 13%;
+  }
+  .gs .fs-3 {
+    width: 21%;
+  }
+  .gs .fs-4 {
+    width: 34%;
+  }
+  .gs .fs-5 {
+    width: 55%;
+  }</p>
+<!-- End /~Amin~/_docs+libs/QUISIA/quisia/Gulp-version/dev/less/app/app-mixins.less -->
 
 
 
@@ -283,6 +322,13 @@ You can target the <code>width</code> property for example: <code>.make-fibo-for
 
 <h1 id="variables">Variables</h1>
 <!-- End /~Amin~/_docs+libs/QUISIA/quisia/Gulp-version/dev/less/app/app-variables.less -->
+
+
+
+
+<!-- Start /~Amin~/_docs+libs/QUISIA/quisia/Gulp-version/dev/less/app/demo.less -->
+
+<!-- End /~Amin~/_docs+libs/QUISIA/quisia/Gulp-version/dev/less/app/demo.less -->
 
 
 
