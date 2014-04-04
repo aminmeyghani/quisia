@@ -60,25 +60,87 @@ __@color__ (optional) : The shadow color in any valid color units.
       .box-shadow-well(@color : #e5e6e7);
     }
 
-##`.smooth(@duration)`
+##`.smooth([@what, @duration, @timing-function])`
 
 ### Description ###
 
-Animates the opacity property of an element using CSS3 transitions.
+Used to add CSS3 transition to the specified property.
 
 ### Parameters: ###
 
-__@duration__ : The animation duration. Can be either expressed in `ms` or `s`.
+1. __@what__ (optional)  *string: or non-string*, The CSS property to which we want to add the transition:
+The default value is `all` which applies the transition to all the properties.
+
+2. __@duration__ (optional) *integer* : The duration of the transition. The default value is 200ms.
+
+3. __@timing-function__ (optional) *string or non-string* : A valid timing function for the transition.
+The default value is `linear`.
 
 ### Usage ###
-  Can be mixed in with elements that have different states, like hover or active.
-  See the example below
+  Can be mixed in with other classes or ids or anywhere. Cannot be called by itself to generate 
+  classes or ids.s
 
 ### Examples ###
-
-    // Adding transition to all of the links
+    // Example to set transition for the hover state of the anchor links.
+    // using all the parameters.
     a, a:hover{
-      .smooth(200ms);
+      .smooth("color",250ms, "ease-out");
+    }
+
+    // Setting transitino for the background color of a box.
+    .box, .box:hover{
+      .smooth(@what: 'background-color');
+    }
+
+##`.custom-loop(@n: 3 [, @base-value:1, @unit: '%', @property:font-size, @selector: ~".fs-", @step-size: 2])`
+
+### Description ###
+
+General purpose loop for creating repeated selectors containing one property that increments
+at a particular value.
+
+### Parameters: ###
+
+1. __@n__ : *integer*, The number of iterations.
+
+2. __@base-value__ (optional): *integer*,  The starting value for the loop to be assigned to the property. Default value is the same is the value assigned for the number of iterations `@n`.
+
+3. __@unit__ (optional): *string*, The unit for the property. Default value is `px`.
+
+4. __@property__ (optional): *non-string* or *string* The CSS property. Default value is `width`
+
+5. __@selector__ (optional): *escaped string*, The selector used for the loop. Could be anything as long as it is passed in as a escaped string.
+
+6. __@step-size__ (optional): *integer*, The value by which the loop increments by.
+
+### Usage ###
+  The mixin can be called inside the LESS independently.
+
+### Examples ###
+    // Using just the required parameter.
+    .custom-loop(@n:3);
+    //->
+    .span-1 {
+      width: 3px;
+    }
+    .span-2 {
+      width: 4px;
+    }
+    .span-3 {
+      width: 5px;
+    }
+
+    //Using all the optional Parameters.
+    .custom-loop( @n: 3 , @base-value:1, @unit: '%', @property:font-size, @selector: ~".fs-", @step-size: 2);
+    //->
+    .fs-1 {
+      font-size: 1%;
+    }
+    .fs-2 {
+      font-size: 3%;
+    }
+    .fs-3 {
+      font-size: 5%;
     }
 
 ##`.make-fs(  @base-size ; @how-many ; @unit; @step-size  )`
@@ -286,24 +348,24 @@ You can target the `width` property for example: `.make-fibo-for(@property : wid
       width: 55%;
     }
   
-  // using custom selectors
-  .make-fibo-for( @how-many:5 , @starting-term:6 , @unit:'%', @property : width, @class-name : ~"gs .fs-");
-  //->
-  .gs .fs-1 {
-    width: 8%;
-  }
-  .gs .fs-2 {
-    width: 13%;
-  }
-  .gs .fs-3 {
-    width: 21%;
-  }
-  .gs .fs-4 {
-    width: 34%;
-  }
-  .gs .fs-5 {
-    width: 55%;
-  }
+    // using custom selectors
+    .make-fibo-for( @how-many:5 , @starting-term:6 , @unit:'%', @property : width, @class-name : ~"gs .fs-");
+    //->
+    .gs .fs-1 {
+      width: 8%;
+    }
+    .gs .fs-2 {
+      width: 13%;
+    }
+    .gs .fs-3 {
+      width: 21%;
+    }
+    .gs .fs-4 {
+      width: 34%;
+    }
+    .gs .fs-5 {
+      width: 55%;
+    }
 
 <!-- End /~Amin~/_docs+libs/QUISIA/quisia/Gulp-version/dev/less/app/app-mixins.less -->
 

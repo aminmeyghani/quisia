@@ -40,18 +40,80 @@ gets a height and stays in the flow of the document.</p>
   // Note that the order of the parameter is not important.
   .box-shadow-well(@color : #e5e6e7);
 }
-</code></pre><h2 id="-smooth-duration-"><code>.smooth(@duration)</code></h2>
+</code></pre><h2 id="-smooth-what-duration-timing-function-"><code>.smooth([@what, @duration, @timing-function])</code></h2>
 <h3 id="description">Description</h3>
-<p>Animates the opacity property of an element using CSS3 transitions.</p>
+<p>Used to add CSS3 transition to the specified property.</p>
 <h3 id="parameters-">Parameters:</h3>
-<p><strong>@duration</strong> : The animation duration. Can be either expressed in <code>ms</code> or <code>s</code>.</p>
+<ol>
+<li><p><strong>@what</strong> (optional)  <em>string: or non-string</em>, The CSS property to which we want to add the transition:
+The default value is <code>all</code> which applies the transition to all the properties.</p>
+</li>
+<li><p><strong>@duration</strong> (optional) <em>integer</em> : The duration of the transition. The default value is 200ms.</p>
+</li>
+<li><p><strong>@timing-function</strong> (optional) <em>string or non-string</em> : A valid timing function for the transition.
+The default value is <code>linear</code>.</p>
+</li>
+</ol>
 <h3 id="usage">Usage</h3>
-<p>  Can be mixed in with elements that have different states, like hover or active.
-  See the example below</p>
+<p>  Can be mixed in with other classes or ids or anywhere. Cannot be called by itself to generate 
+  classes or ids.s</p>
 <h3 id="examples">Examples</h3>
-<pre><code>// Adding transition to all of the links
+<pre><code>// Example to set transition for the hover state of the anchor links.
+// using all the parameters.
 a, a:hover{
-  .smooth(200ms);
+  .smooth(&quot;color&quot;,250ms, &quot;ease-out&quot;);
+}
+
+// Setting transitino for the background color of a box.
+.box, .box:hover{
+  .smooth(@what: &#39;background-color&#39;);
+}
+</code></pre><h2 id="-custom-loop-n-3-base-value-1-unit-property-font-size-selector-fs-step-size-2-"><code>.custom-loop(@n: 3 [, @base-value:1, @unit: &#39;%&#39;, @property:font-size, @selector: ~&quot;.fs-&quot;, @step-size: 2])</code></h2>
+<h3 id="description">Description</h3>
+<p>General purpose loop for creating repeated selectors containing one property that increments
+at a particular value.</p>
+<h3 id="parameters-">Parameters:</h3>
+<ol>
+<li><p><strong>@n</strong> : <em>integer</em>, The number of iterations.</p>
+</li>
+<li><p><strong>@base-value</strong> (optional): <em>integer</em>,  The starting value for the loop to be assigned to the property. Default value is the same is the value assigned for the number of iterations <code>@n</code>.</p>
+</li>
+<li><p><strong>@unit</strong> (optional): <em>string</em>, The unit for the property. Default value is <code>px</code>.</p>
+</li>
+<li><p><strong>@property</strong> (optional): <em>non-string</em> or <em>string</em> The CSS property. Default value is <code>width</code></p>
+</li>
+<li><p><strong>@selector</strong> (optional): <em>escaped string</em>, The selector used for the loop. Could be anything as long as it is passed in as a escaped string.</p>
+</li>
+<li><p><strong>@step-size</strong> (optional): <em>integer</em>, The value by which the loop increments by.</p>
+</li>
+</ol>
+<h3 id="usage">Usage</h3>
+<p>  The mixin can be called inside the LESS independently.</p>
+<h3 id="examples">Examples</h3>
+<pre><code>// Using just the required parameter.
+.custom-loop(@n:3);
+//-&gt;
+.span-1 {
+  width: 3px;
+}
+.span-2 {
+  width: 4px;
+}
+.span-3 {
+  width: 5px;
+}
+
+//Using all the optional Parameters.
+.custom-loop( @n: 3 , @base-value:1, @unit: &#39;%&#39;, @property:font-size, @selector: ~&quot;.fs-&quot;, @step-size: 2);
+//-&gt;
+.fs-1 {
+  font-size: 1%;
+}
+.fs-2 {
+  font-size: 3%;
+}
+.fs-3 {
+  font-size: 5%;
 }
 </code></pre><h2 id="-make-fs-base-size-how-many-unit-step-size-"><code>.make-fs(  @base-size ; @how-many ; @unit; @step-size  )</code></h2>
 <h3 id="description">Description</h3>
@@ -225,23 +287,24 @@ You can target the <code>width</code> property for example: <code>.make-fibo-for
 .mygrid-5 {
   width: 55%;
 }
-</code></pre><p>  // using custom selectors
-  .make-fibo-for( @how-many:5 , @starting-term:6 , @unit:&#39;%&#39;, @property : width, @class-name : ~&quot;gs .fs-&quot;);
-  //-&gt;
-  .gs .fs-1 {
-    width: 8%;
-  }
-  .gs .fs-2 {
-    width: 13%;
-  }
-  .gs .fs-3 {
-    width: 21%;
-  }
-  .gs .fs-4 {
-    width: 34%;
-  }
-  .gs .fs-5 {
-    width: 55%;
-  }</p>
-<!-- End /~Amin~/_docs+libs/QUISIA/quisia/Gulp-version/dev/less/app/app-mixins.less -->
+
+// using custom selectors
+.make-fibo-for( @how-many:5 , @starting-term:6 , @unit:&#39;%&#39;, @property : width, @class-name : ~&quot;gs .fs-&quot;);
+//-&gt;
+.gs .fs-1 {
+  width: 8%;
+}
+.gs .fs-2 {
+  width: 13%;
+}
+.gs .fs-3 {
+  width: 21%;
+}
+.gs .fs-4 {
+  width: 34%;
+}
+.gs .fs-5 {
+  width: 55%;
+}
+</code></pre><!-- End /~Amin~/_docs+libs/QUISIA/quisia/Gulp-version/dev/less/app/app-mixins.less -->
 

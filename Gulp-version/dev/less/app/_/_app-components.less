@@ -42,10 +42,10 @@
 
 #qbtn{
   .flat-states(){
-    .smooth-bg();
+    .smooth(@what:background);
     &:hover{
       background: #000;
-      .smooth-bg();
+      .smooth(@what:background);
     }
     &:active{
       .opacity(1);

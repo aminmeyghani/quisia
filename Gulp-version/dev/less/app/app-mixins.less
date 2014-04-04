@@ -73,38 +73,142 @@ __@color__ (optional) : The shadow color in any valid color units.
   .box-shadow("inset 0 0 @{blur} @{speed} @{color}");
 }
 //--------------
-
-
 /*   
-##`.smooth(@duration)`
+##`.smooth([@what, @duration, @timing-function])`
 
 ### Description ###
 
-Animates the opacity property of an element using CSS3 transitions.
+Used to add CSS3 transition to the specified property.
 
 ### Parameters: ###
 
-__@duration__ : The animation duration. Can be either expressed in `ms` or `s`.
+1. __@what__ (optional)  *string: or non-string*, The CSS property to which we want to add the transition:
+The default value is `all` which applies the transition to all the properties.
+
+2. __@duration__ (optional) *integer* : The duration of the transition. The default value is 200ms.
+
+3. __@timing-function__ (optional) *string or non-string* : A valid timing function for the transition.
+The default value is `linear`.
 
 ### Usage ###
-  Can be mixed in with elements that have different states, like hover or active.
-  See the example below
+  Can be mixed in with other classes or ids or anywhere. Cannot be called by itself to generate 
+  classes or ids.s
 
 ### Examples ###
-
-    // Adding transition to all of the links
+    // Example to set transition for the hover state of the anchor links.
+    // using all the parameters.
     a, a:hover{
-      .smooth(200ms);
+      .smooth("color",250ms, "ease-out");
     }
-    
-    */
 
-    .smooth(@duration : @animation-duration){
-      transition : opacity @duration @animation-timing-function;
+    // Setting transitino for the background color of a box.
+    .box, .box:hover{
+      .smooth(@what: 'background-color');
     }
-    .smooth-bg(@duration : @animation-duration){
-      transition : background @duration @animation-timing-function; 
+
+*/
+
+.smooth(@what : all ; @duration : 200 ; @timing-function : linear){
+  transition : ~"@{what}" @duration ~"@{timing-function}";
+}
+
+
+
+/*   
+##`.custom-loop(@n: 3 [, @base-value:1, @unit: '%', @property:font-size, @selector: ~".fs-", @step-size: 2])`
+
+### Description ###
+
+General purpose loop for creating repeated selectors containing one property that increments
+at a particular value.
+
+### Parameters: ###
+
+1. __@n__ : *integer*, The number of iterations.
+
+2. __@base-value__ (optional): *integer*,  The starting value for the loop to be assigned to the property. Default value is the same is the value assigned for the number of iterations `@n`.
+
+3. __@unit__ (optional): *string*, The unit for the property. Default value is `px`.
+
+4. __@property__ (optional): *non-string* or *string* The CSS property. Default value is `width`
+
+5. __@selector__ (optional): *escaped string*, The selector used for the loop. Could be anything as long as it is passed in as a escaped string.
+
+6. __@step-size__ (optional): *integer*, The value by which the loop increments by.
+
+
+### Usage ###
+  The mixin can be called inside the LESS independently.
+
+### Examples ###
+    // Using just the required parameter.
+    .custom-loop(@n:3);
+    //->
+    .span-1 {
+      width: 3px;
     }
+    .span-2 {
+      width: 4px;
+    }
+    .span-3 {
+      width: 5px;
+    }
+
+    //Using all the optional Parameters.
+    .custom-loop( @n: 3 , @base-value:1, @unit: '%', @property:font-size, @selector: ~".fs-", @step-size: 2);
+    //->
+    .fs-1 {
+      font-size: 1%;
+    }
+    .fs-2 {
+      font-size: 3%;
+    }
+    .fs-3 {
+      font-size: 5%;
+    }
+
+*/
+
+//TODO: // There should be an option for the loop to go reverse
+.custom-loop( @base-value:@n ; @n ; @unit : px; @j : 1 ;@_s:0 ; @step-size:1  ; @selector:~".span-"; @property : width)
+when not(@n=0)  {
+  
+  @size : @base-value+@_s;
+  @{selector}@{j}{
+    @{property} : ~"@{size}@{unit}";
+  }
+  .custom-loop(@base-value ,  (@n - 1), @unit , (@j + 1) ,  (@_s+@step-size) , @step-size,  @selector, @property);
+}
+
+
+// make-fs version 2 based on the custom loop.
+// TODO: docs write the docs for the make-fs
+
+.make-fs(@fs-base, @fs-increment, @n:4, @unit:px){  
+  .custom-loop(@n:@n, @property:font-size, @step-size:@fs-increment, @selector:~'.fs-', @base-value : @fs-base, @unit:@unit);
+}
+
+
+// can be called with.
+//.make-fs(@n:4, @fs-base:12, @fs-increment:4, @unit:em);
+
+//->
+
+// .fs-1 {
+//   font-size: 12px;
+// }
+// .fs-2 {
+//   font-size: 16px;
+// }
+// .fs-3 {
+//   font-size: 20px;
+// }
+// .fs-4 {
+//   font-size: 24px;
+// }
+
+
+
 
 /*   
 ##`.make-fs(  @base-size ; @how-many ; @unit; @step-size  )`
@@ -205,7 +309,6 @@ when not((@how-many)=0)  {
 }
 
 //TODO: docs here.
-//reverse
 
 .make-fs-reverse(  @base-size ; @how-many ; @unit : px; @j : 1  ;
 @_s:0 ; @step-size  ; @selector:~".fs-")
@@ -218,8 +321,6 @@ when not((@how-many)=0)  {
   .make-fs-reverse(  @base-size ,  (@how-many - 1), @unit ,
     (@j + 1) ,  (@_s+@step-size) , @step-size,  @selector);
 }
-
-
 
 /*   
 ##`.fibo(@n, @unit, @property)`
@@ -270,12 +371,7 @@ __@property__  : The CSS property.
       width: 377%;
       height: 610%;
     }
-
-
-
-
 */
-
 
 .fibo( @n,@unit,@property) {
   @{property}: ~`
@@ -370,27 +466,24 @@ You can target the `width` property for example: `.make-fibo-for(@property : wid
       width: 55%;
     }
   
-  // using custom selectors
-  .make-fibo-for( @how-many:5 , @starting-term:6 , @unit:'%', @property : width, @class-name : ~"gs .fs-");
-  //->
-  .gs .fs-1 {
-    width: 8%;
-  }
-  .gs .fs-2 {
-    width: 13%;
-  }
-  .gs .fs-3 {
-    width: 21%;
-  }
-  .gs .fs-4 {
-    width: 34%;
-  }
-  .gs .fs-5 {
-    width: 55%;
-  }
-
-
-
+    // using custom selectors
+    .make-fibo-for( @how-many:5 , @starting-term:6 , @unit:'%', @property : width, @class-name : ~"gs .fs-");
+    //->
+    .gs .fs-1 {
+      width: 8%;
+    }
+    .gs .fs-2 {
+      width: 13%;
+    }
+    .gs .fs-3 {
+      width: 21%;
+    }
+    .gs .fs-4 {
+      width: 34%;
+    }
+    .gs .fs-5 {
+      width: 55%;
+    }
 */
 .make-fibo-for( @how-many ; @unit: px; @j : 1  ;  @starting-term:0 ; @step-size:1  ; @class-name:fs ; @property : font-size )
 when not((@how-many)=0)  {
@@ -404,9 +497,6 @@ when not((@how-many)=0)  {
 // calling the mixin.
 //.make-fibo-for( @how-many:9 , @starting-term:5 );
 
-
-
-
 //gradient
 
 // Gradient Bar Colors for buttons and alerts
@@ -418,6 +508,14 @@ when not((@how-many)=0)  {
   border-color: rgba(0,0,0,.1) rgba(0,0,0,.1) fadein(rgba(0,0,0,.1), 15%);
 }
 
+
+
+// given colors, it will create dashed lines.
+//docs here
+.dashed-lines(){
+  background-image :repeating-linear-gradient(-20deg, transparent -1px, transparent 1px, #c5e2f3 4px);
+  background-color: #fff;
+}
 
 
 
