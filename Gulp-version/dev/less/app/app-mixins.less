@@ -169,45 +169,70 @@ at a particular value.
 
 */
 
+
+//reverse
+// & when(@dir=up){
+//   .size(0);
+//   border-left   : @size solid transparent;
+//   border-right  : @size solid transparent;
+//   border-bottom : @size solid @color;
+// }
+
 //TODO: // There should be an option for the loop to go reverse
-.custom-loop( @base-value:@n ; @n ; @unit : px; @j : 1 ;@_s:0 ; @step-size:1  ; @selector:~".span-"; @property : width)
+.custom-loop( @base-value:@n ; @n ; @unit : px; @j : 1 ;@_s:0 ; @step-size:1  ; @selector:~".span-"; @property : width ; @isReverse:false)
 when not(@n=0)  {
-  
+
   @size : @base-value+@_s;
-  @{selector}@{j}{
-    @{property} : ~"@{size}@{unit}";
+  @reverse : @isReverse;
+
+  & when(@reverse){
+    @{selector}@{n}{
+      @{property} : ~"@{size}@{unit}";    
+    }
   }
-  .custom-loop(@base-value ,  (@n - 1), @unit , (@j + 1) ,  (@_s+@step-size) , @step-size,  @selector, @property);
+  & when not (@reverse){
+    @{selector}@{j}{
+      @{property} : ~"@{size}@{unit}";
+    }
+  }
+  
+  .custom-loop(@base-value ,  (@n - 1), @unit , (@j + 1) ,  (@_s+@step-size) , @step-size,  @selector, @property, @reverse);
 }
+
+//example using the reverse
+//.custom-loop(@n:3,@step-size:4, @base-value:1, @isReverse:true);
 
 
 // make-fs version 2 based on the custom loop.
 // TODO: docs write the docs for the make-fs
 
-.make-fs(@fs-base, @fs-increment, @n:4, @unit:px){  
-  .custom-loop(@n:@n, @property:font-size, @step-size:@fs-increment, @selector:~'.fs-', @base-value : @fs-base, @unit:@unit);
+.make-fs(@base-size, @step-size:1, @n:4, @unit:px, @selector:~".fs-", @isReverse:false){  
+  .custom-loop(@n:@n, @property:font-size, @step-size:@step-size, @selector:@selector, @base-value : @base-size, @unit:@unit, @isReverse:@isReverse);
 }
 
 
+
 // can be called with.
-//.make-fs(@n:4, @fs-base:12, @fs-increment:4, @unit:em);
+// using custom selector and the reverse boolean.
+//.make-fs(@n:4,@step-size:2, @base-size:22, @isReverse:true, @selector:h);
 
 //->
 
-// .fs-1 {
-//   font-size: 12px;
+// h4 {
+//   font-size: 22px;
 // }
-// .fs-2 {
-//   font-size: 16px;
-// }
-// .fs-3 {
-//   font-size: 20px;
-// }
-// .fs-4 {
+// h3 {
 //   font-size: 24px;
 // }
+// h2 {
+//   font-size: 26px;
+// }
+// h1 {
+//   font-size: 28px;
+// }
 
 
+//TODO: update the make fs documentation.
 
 
 /*   
