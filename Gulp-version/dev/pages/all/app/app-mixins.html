@@ -45,7 +45,7 @@ gets a height and stays in the flow of the document.</p>
 <p>Used to add CSS3 transition to the specified property.</p>
 <h3 id="parameters-">Parameters:</h3>
 <ol>
-<li><p><strong>@what</strong> (optional)  <em>string: or non-string</em>, The CSS property to which we want to add the transition:
+<li><p><strong>@what</strong> (optional)  <em>string or non-string</em> : The CSS property to which we want to add the transition:
 The default value is <code>all</code> which applies the transition to all the properties.</p>
 </li>
 <li><p><strong>@duration</strong> (optional) <em>integer</em> : The duration of the transition. The default value is 200ms.</p>
@@ -74,17 +74,19 @@ a, a:hover{
 at a particular value.</p>
 <h3 id="parameters-">Parameters:</h3>
 <ol>
-<li><p><strong>@n</strong> : <em>integer</em>, The number of iterations.</p>
+<li><p><strong>@n</strong>  <em>integer</em>: The number of iterations.</p>
 </li>
-<li><p><strong>@base-value</strong> (optional): <em>integer</em>,  The starting value for the loop to be assigned to the property. Default value is the same is the value assigned for the number of iterations <code>@n</code>.</p>
+<li><p><strong>@base-value</strong> (optional) <em>integer</em>: The starting value for the loop to be assigned to the property. Default value is the same is the value assigned for the number of iterations <code>@n</code>.</p>
 </li>
-<li><p><strong>@unit</strong> (optional): <em>string</em>, The unit for the property. Default value is <code>px</code>.</p>
+<li><p><strong>@unit</strong> (optional) <em>string</em>: The unit for the property. Default value is <code>px</code>.</p>
 </li>
-<li><p><strong>@property</strong> (optional): <em>non-string</em> or <em>string</em> The CSS property. Default value is <code>width</code></p>
+<li><p><strong>@property</strong> (optional) <em>non-string</em> or <em>string</em>:  The CSS property. Default value is <code>width</code></p>
 </li>
-<li><p><strong>@selector</strong> (optional): <em>escaped string</em>, The selector used for the loop. Could be anything as long as it is passed in as a escaped string.</p>
+<li><p><strong>@selector</strong> (optional) <em>escaped string</em> : The selector used for the loop. Could be anything as long as it is passed in as a escaped string.</p>
 </li>
-<li><p><strong>@step-size</strong> (optional): <em>integer</em>, The value by which the loop increments by.</p>
+<li><p><strong>@step-size</strong> (optional) <em>integer</em>: The value by which the loop increments by.</p>
+</li>
+<li><p><strong>@isReverse</strong> (optional) <em>boolean</em>: If set to true, it will reverse the loop. Default value is false.</p>
 </li>
 </ol>
 <h3 id="usage">Usage</h3>
@@ -114,6 +116,19 @@ at a particular value.</p>
 }
 .fs-3 {
   font-size: 5%;
+}
+
+// Using the @isReverse option to create h1 to h3 headings where h1 is the largest value and h3 is the smallest.
+.custom-loop( @n: 3 , @base-value:14,  @property:font-size, @selector: h, @step-size: 2, @isReverse:true);
+//-&gt;
+h3 {
+  font-size: 14px;
+}
+h2 {
+  font-size: 16px;
+}
+h1 {
+  font-size: 18px;
 }
 </code></pre><h2 id="-make-fs-base-size-how-many-unit-step-size-"><code>.make-fs(  @base-size ; @how-many ; @unit; @step-size  )</code></h2>
 <h3 id="description">Description</h3>

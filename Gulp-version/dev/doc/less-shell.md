@@ -127,7 +127,7 @@ Used to add CSS3 transition to the specified property.
 
 ### Parameters: ###
 
-1. __@what__ (optional)  *string: or non-string*, The CSS property to which we want to add the transition:
+1. __@what__ (optional)  *string or non-string* : The CSS property to which we want to add the transition:
 The default value is `all` which applies the transition to all the properties.
 
 2. __@duration__ (optional) *integer* : The duration of the transition. The default value is 200ms.
@@ -160,17 +160,19 @@ at a particular value.
 
 ### Parameters: ###
 
-1. __@n__ : *integer*, The number of iterations.
+1. __@n__  *integer*: The number of iterations.
 
-2. __@base-value__ (optional): *integer*,  The starting value for the loop to be assigned to the property. Default value is the same is the value assigned for the number of iterations `@n`.
+2. __@base-value__ (optional) *integer*: The starting value for the loop to be assigned to the property. Default value is the same is the value assigned for the number of iterations `@n`.
 
-3. __@unit__ (optional): *string*, The unit for the property. Default value is `px`.
+3. __@unit__ (optional) *string*: The unit for the property. Default value is `px`.
 
-4. __@property__ (optional): *non-string* or *string* The CSS property. Default value is `width`
+4. __@property__ (optional) *non-string* or *string*:  The CSS property. Default value is `width`
 
-5. __@selector__ (optional): *escaped string*, The selector used for the loop. Could be anything as long as it is passed in as a escaped string.
+5. __@selector__ (optional) *escaped string* : The selector used for the loop. Could be anything as long as it is passed in as a escaped string.
 
-6. __@step-size__ (optional): *integer*, The value by which the loop increments by.
+6. __@step-size__ (optional) *integer*: The value by which the loop increments by.
+
+7. __@isReverse__ (optional) *boolean*: If set to true, it will reverse the loop. Default value is false.
 
 ### Usage ###
   The mixin can be called inside the LESS independently.
@@ -200,6 +202,19 @@ at a particular value.
     }
     .fs-3 {
       font-size: 5%;
+    }
+
+    // Using the @isReverse option to create h1 to h3 headings where h1 is the largest value and h3 is the smallest.
+    .custom-loop( @n: 3 , @base-value:14,  @property:font-size, @selector: h, @step-size: 2, @isReverse:true);
+    //->
+    h3 {
+      font-size: 14px;
+    }
+    h2 {
+      font-size: 16px;
+    }
+    h1 {
+      font-size: 18px;
     }
 
 ##`.make-fs(  @base-size ; @how-many ; @unit; @step-size  )`
