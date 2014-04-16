@@ -238,7 +238,7 @@ when not(@n=0)  {
 // }
 
 
-//TODO: update the make fs documentation.
+//TODO: the make-fs below is deprecate.deprecated.
 
 
 /*   
@@ -554,3 +554,44 @@ when not((@how-many)=0)  {
 .text-stand-out(){
   .text-shadow("0px 2px 3px #555;");
 }
+//todo: mixin for the placeholder.
+// pseuducode 
+// .loop(@n,@v...){
+//   .bg{
+//     color: extract(@v,@n);
+//   }
+// }
+
+// .loop(2,"1");
+// @list: "apple", "pear", "coconut", "orange";
+
+// .x{
+//   value: extract(@list, 3);
+// }
+
+
+// ............................................................
+// .for
+//http://stackoverflow.com/questions/21440789/loop-through-array-of-values-in-less
+// .for(@i, @n) {.-each(@i)}
+// .for(@n)     when (isnumber(@n)) {.for(1, @n)}
+// .for(@i, @n) when not (@i = @n)  {
+//     .for((@i + (@n - @i) / abs(@n - @i)), @n);
+// }
+
+// // ............................................................
+// // .for-each
+
+// .for(@array)   when (default()) {.for-impl_(length(@array))}
+// .for-impl_(@i) when (@i > 1)    {.for-impl_((@i - 1))}
+// .for-impl_(@i)                  {.-each(extract(@array, @i))}
+
+// @colors: 'green', 'red', 'blue';
+
+// .example_module {
+//     .-(@i: length(@colors)) when (@i > 0) {
+//         @name: e(extract(@colors, @i));
+//         &.@{name} {background: @@name}
+//         .-((@i - 1));
+//     } .-;
+// }
