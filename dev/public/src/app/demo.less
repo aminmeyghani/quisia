@@ -1,0 +1,56 @@
+ul{
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  -webkit-padding-start: 0;
+  
+  &,li{
+    margin-left:0;
+  }
+}
+h1,h2,h3,h4,h5,h6{
+  margin:0;
+}
+
+h1,h2,h3,h4,h5,h6{
+  margin:0 0 7px 0;
+}
+p{
+  margin:0;
+}
+
+p{
+  margin-bottom: 7px;
+}
+
+.golden-box{
+  .fibo(@n : 14, @unit:px, @property:width);
+  .fibo(13,px,height);
+}
+
+.list-inline(){
+  list-style : none;
+}
+
+.fix-float-example >  ul{
+  margin-bottom: 10px;
+  li{
+    .list-inline();
+    color : #000;
+    padding : 10px;
+    border: 1px dashed #000; 
+  }
+}
+
+// font size demos
+.make-fs(@base-size: 13, @how-many:4, @step-size:4);
+.make-fs-reverse(@base-size: 13, @how-many:4,@step-size:4, @unit : 'px', @selector : ~".font-size-example h" );
+
+
+.make-fibo-for( @how-many:5 , @starting-term:6 , @unit:'px', @property : font-size, @class-name : ~"font-size-example .ffs-");
+
+.font-size-example [class^='ffs-']{
+  line-height: 26px;
+  margin: 16px 0;
+}

@@ -1,0 +1,37 @@
+/*!
+The Simple Front-End Framework.
+Version 0.1.
+By: Amin Meyghani
+Feb 3, 2014
+*/
+
+
+// Framework Specific
+//-----------------
+@_global_paths : "./_/_globals";
+@import ~"@{_global_paths}/_normalize";
+@import ~"@{_global_paths}/_variables";
+@import ~"@{_global_paths}/_mixins";
+@import ~"@{_global_paths}/_grid";
+@import ~"@{_global_paths}/_css3";
+@import ~"@{_global_paths}/_utils";
+@import ~"@{_global_paths}/_shapes";
+@import ~"@{_global_paths}/_surgical";
+@import ~"@{_global_paths}/_glyphicons";
+
+// //-----------------
+// // App specific
+@app_path : "app";
+@import ~"@{app_path}/app-variables";
+@import ~"@{app_path}/app-mixins";
+@import ~"@{app_path}/app-base";
+@import ~"@{app_path}/app-components";
+@import ~"@{app_path}/app-modules";
+@import ~"@{app_path}/app-layout";
+@import ~"@{app_path}/app-theme";
+@import ~"@{app_path}/app-md-theme2";
+
+// //-----------------
+// // Demo pages
+@app_path : "app";
+@import ~"@{app_path}/demo";

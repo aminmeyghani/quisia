@@ -1,0 +1,86 @@
+/*
+  # _app-components.less #
+*/
+@import "./_app-component-variables";
+// Button Generators
+//---------------------
+#loadBtnVariables();
+//TODO: custom input as a custom property.
+//TODO: use a gradient mixin to make the gradients.
+//TODO: docs go here.
+
+
+
+.qbtn-maker(
+    @color :  "rgb(73, 77, 89)" ;
+    @border: "1px solid rgb(209, 209, 209)" ;
+    @text-shadow : "rgba(255, 255, 255, 0.498039) 0px 1px 0px" ; 
+    @bg : "linear-gradient(@{qbtn-1-light-color}, @{qbtn-1-dark-color})" ; 
+    @box-shadow: "rgba(0, 0, 0, 0.027451) 0px -1px 0px 0px inset, rgba(0, 0, 0, 0.0392157) 0px 1px 0px 0px" ;
+    @display : "block" ; 
+    @padding : "@{qbtn-normal}";
+    @fs : "@{qbtn-fs-normal}";
+    @br : "@{primary-border-radius}";
+    ){
+    color: ~"@{color}";
+    border : ~"@{border}";
+    text-shadow: ~"@{text-shadow}";
+    background: ~"@{bg}";
+    box-shadow: ~"@{box-shadow}";
+    display : ~"@{display}";
+    padding : ~"@{padding}";
+    font-size:  ~"@{fs}";
+    border-radius : ~"@{br}";
+}
+.qbtn(){
+  white-space: nowrap;
+  cursor: pointer;
+  font-smoothing: antialiased;
+  letter-spacing: normal;
+  line-height: normal;
+}
+
+#qbtn{
+  .flat-states(){
+    .smooth(@what:background);
+    &:hover{
+      background: #000;
+      .smooth(@what:background);
+    }
+    &:active{
+      .opacity(1);
+    }
+  }
+  .gloss-states(){
+    .smooth();
+    &:hover{
+      .opacity(0.2);
+      .smooth();
+    }
+    &:active{
+      .opacity(1);
+    }
+  }
+}
+
+.set-qbtn-large(@padding : @qbtn-large ; @fs : @qbtn-fs-large){
+  padding : @padding;
+  font-size: @fs;
+}
+
+.set-qbtn-small(@padding : @qbtn-small ; @fs : @qbtn-fs-small){
+  padding : @padding;
+  font-size: @fs;
+}
+
+// List Component Generator
+//---------------------
+// ## Implementations
+.list(@type; @padding : inline) when ((@type)="inline"){
+  @_type :  ~"@{type}";
+  &  > li { display : @padding; }
+}
+.list(@type; @padding) when  ((@type)="stacked"){
+  @_type :  ~"@{type}";
+  &  > li { padding : @padding; }
+}

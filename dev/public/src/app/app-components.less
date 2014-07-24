@@ -1,0 +1,82 @@
+/*
+    # Components Main Interfaces #
+*/
+@import "_/_app-components";
+/*
+## List intefaces ##
+The `list` components allow you to easily define lists and use them
+in different parts fo different components like nav bar or legends 
+or anything of that nature.
+
+### Example ###
+
+    <ul class="list-inline">
+        <li>first</li>
+        <li>Second</li>
+    </ul>
+
+*/
+.list {
+    &-inline   { .list("inline");         }
+    &-compact  { .list("stacked",5px);    }
+    &-loose    { .list("stacked",20px);   }
+}
+
+
+
+button:active, .qbtn:active {
+    outline: none;
+    border: none;
+}
+button:focus, .qbtn:focus {
+    outline: none;
+}
+.qbtn{
+    .qbtn();
+    .smooth(@what:background, @duratino : @btn-animation-duration);
+    
+    
+}
+.qbtn1 {
+    .qbtn-maker(
+        @color:"@{qbtn-1-font-color}",
+        @display:inline-block
+        );
+}
+.qbtn1-flat{
+    &:extend(.qbtn1);
+    background: @qbtn-1-color;
+}
+.qbtn1-flat, .qbtn2-flat{
+    #qbtn.flat-states();
+}
+//---------
+.qbtn2 {
+    .qbtn-maker
+    ( 
+        @color:"@{qbtn-2-font-color}",
+        @border:"1px solid @{qbtn-2-color}",
+        @bg: "linear-gradient(@{qbtn-2-light-color}, @{qbtn-2-dark-color})",
+        @text-shadow : "none",
+        @display : "inline-block"
+
+    );
+}
+.qbtn2-flat {
+    &:extend(.qbtn2);
+    background: @qbtn-2-color;
+}
+//----active states----\\
+.qbtn1, .qbtn1-flat {
+    &:active {
+        // #qbtn-state._1.active();
+    }    
+}
+.qbtn2, .qbtn2-flat {
+    &:active{
+        // #qbtn-state._2.active();
+    }    
+}
+.qbtn-block{width:100%;}
+.qbtn-small{.set-qbtn-small();}
+.qbtn-large{.set-qbtn-large();}

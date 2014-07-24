@@ -1,0 +1,62 @@
+/*
+ # Base #
+ Contains the base HTML styles. The elements that are targeed are mainly for resetting purposes.
+*/
+html {
+ -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+body {
+	font-family: 'Archivo Narrow', sans-serif;
+}
+// h1{.fs-2;}h2{.fs-4;}h3{.fs-6;}h4{.fs-8;}
+
+//
+// Scaffolding
+// --------------------------------------------------
+section{
+	.make-row();
+}
+
+a.active{
+	font-weight: bold;
+}
+
+a{
+	text-decoration: none;
+	// color : @_color1;
+	&:hover{
+		// color : @_color2;
+	}
+}
+
+
+.clearfix{
+	.clearfix();
+}
+// a{
+// 	text-decoration: none;
+// 	color : orange;
+// 	color : darken(@_color1,30%);
+// 	.smooth();
+// 	&:hover{
+// 		color : (@_color1);
+// 		.smooth();
+// 	}
+// 	&:active{
+// 		color : darken(@_color1,30%);
+// 	}
+// }
+.dark-blue{
+	color : @dark-blue;
+}
+.blue{
+	color : @blue;
+}
+
+.white{
+	color : @white;
+}
+
+.text-center{
+	text-align: center;
+}
