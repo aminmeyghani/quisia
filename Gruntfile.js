@@ -1,61 +1,78 @@
 module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt, {pattern: ['grunt-contrib-*', 'grunt-*']});
   grunt.initConfig({
-    appDoc: {
-      appFilesPath : "dev/public/src",
-      markdownOutputPath : "dev/public/docs/markdown-pages",
-      htmlOutputPath: "dev/public/docs/documentations",
-      htmlDocTemplatePath: "dev/public/docs",
-      srcExtension: ".less"
-
+    lessShell: {
+      srcPath : "dev/public/src",
+      docsMdOutput : "dev/public/docs/markdown-pages",
+      docsHtmlOutput: "dev/public/docs/documentations",
+      docsHtmlTemplate: "dev/public/docs",
+      docSrcExtension: ".less",
+      devPath: "dev/public",
+      privatePath: "dev/_private"
     },
+    // Doc generation tasks.
     markdox: {
       target: {
         files: [
-        {
+          {
             expand: true,                               // Enable dynamic expansion.
-            cwd: '<%= appDoc.appFilesPath %>',      // Src matches are relative to this path.
-            src: ['**/*<%= appDoc.srcExtension %>'],                        // Actual pattern(s) to match.
-            dest: '<%= appDoc.markdownOutputPath %>', // Destination path prefix.
+            cwd: '<%= lessShell.srcPath %>',      // Src matches are relative to this path.
+            src: ['**/*<%= lessShell.docSrcExtension %>'],                        // Actual pattern(s) to match.
+            dest: '<%= lessShell.docsMdOutput %>', // Destination path prefix.
             ext: '.md'                                  // Dest filepaths will have this extension.
-          }
+            }
           ]
         }
-      },
-      markdown: {
-        all: {
-          files: [
+    },
+    markdown: {
+      all: {
+        files: [
           {
             expand: true,
-            cwd: '<%= appDoc.markdownOutputPath %>',
+            cwd: '<%= lessShell.docsMdOutput %>',
             src: '**/*.md',
-            dest: '<%= appDoc.htmlOutputPath %>',
+            dest: '<%= lessShell.docsHtmlOutput %>',
             ext: '.htm'
           }
-          ],
-          options: {
-            template: '<%= appDoc.htmlDocTemplatePath %>/template.html',
-            markdownOptions: {
-              gfm: true,
-              highlight: "auto",
-              codeLines: {
-                before: '<span>',
-                after: '</span>'
-              }
+        ],
+        options: {
+          template: '<%= lessShell.docsHtmlTemplate %>/template.html',
+          markdownOptions: {
+            gfm: true,
+            highlight: "auto",
+            codeLines: {
+              before: '<span>',
+              after: '</span>'
             }
           }
-        },
-        
+        }
       },
-      concat: {
-        dist: {
-          src: ['<%= appDoc.markdownOutputPath %>/**/*.md'],
-          dest: '<%= appDoc.markdownOutputPath %>/All/all.md',
-        },
+    },
+    concat: {
+      dist: {
+        src: ['<%= lessShell.docsMdOutput %>/**/*.md'],
+        dest: '<%= lessShell.docsMdOutput %>/All/all.md',
       },
-      clean: {
-        htm: ["<%= appDoc.htmlOutputPath %>/**/*.htm","<%= appDoc.htmlOutputPath %>"],
-        md: ["<%= appDoc.markdownOutputPath %>/**/*.md"]
+    },
+    // Compiling LESS src.
+    less: {
+      dev: {
+        files: {
+          "<%= lessShell.privatePath %>/less-shell-css/main.css": "<%= lessShell.devPath %>/src/main.less"
+        }
+      }
+    },
+    cssmin: {
+      combine: {
+        files: {
+          "<%= lessShell.privatePath %>/less-shell-css/main.min.css": "<%= lessShell.privatePath %>/less-shell-css/main.css"
+        }
+      }
+    },
+    // Cleaning things up ...
+    clean: {
+      htmlDocs: ["<%= lessShell.docsHtmlOutput %>/**/*.htm","<%= lessShell.docsHtmlOutput %>"],
+      mdDocs: ["<%= lessShell.docsMdOutput %>/**/*.md"]
     }
   })
 
@@ -64,7 +81,5 @@ module.exports = function(grunt) {
   // Default task(s).
   grunt.registerTask('default', ['markdox']);
   grunt.registerTask('docs', ['clean', 'markdox', 'concat', 'markdown']);
-  grunt.registerTask('md', ['clean:md','markdox']);
-
-
+  grunt.registerTask('mdDocs', ['clean:mdDocs','markdox']);
 };
