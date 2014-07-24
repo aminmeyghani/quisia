@@ -1,65 +1,70 @@
 module.exports = function(grunt) {
-	require('load-grunt-tasks')(grunt);
-	grunt.initConfig({
-		pkg: grunt.file.readJSON('package.json'),
-		app: {
-			dev: 'app/dev'
-		},
-		less: {
-			dev: {
-				files: {
-					"<%= app.dev %>/css/app.css": "<%= app.dev %>/less/main.less"
-				}
-			}
-		},
-		cssmin: {
-			combine: {
-				files: {
-					"<%= app.dev %>/css/app.min.css": "<%= app.dev %>/css/app.css"
-				}
-			}
-		},
-		watch: {
-			dev: {
-				options: {
-					livereload: true
-				},
-				files: ['<%=app.dev%>/**', '!<%= app.dev %>/css/**'],
-				tasks: ['less','autoprefixer']
-			}
-		},
-		connect: {
-			server: {
-				options: {
-					port: 9001,
-					base: ['<%= app.dev %>'],
-					keepalive: true,
-					livereload: true
-				}
-			}
-		},
-		open: {
-			all: {
-				path: 'http://localhost:<%= connect.server.options.port%>'
-			}
-		},
-		concurrent: {
-			dev: ['connect', 'open', 'watch'],
-			options: {
-				logConcurrentOutput: true,
-				limit: 3
-			}
-		},
-		autoprefixer: {
-			options: {
-				browsers: ["ff 3.6","opera 9.5", "ie 8", "chrome 5", "ios 3.2", "android 2.1", "safari 3.1"]
-			},
-			dist: {
-				files: {
-					"<%= app.dev %>/css/app.css": "<%= app.dev %>/css/app.css"
-				}
-			}
-		}
-	});
-grunt.registerTask('dev', ['concurrent']);
+  require('load-grunt-tasks')(grunt, {pattern: ['grunt-contrib-*', 'grunt-*']});
+  grunt.initConfig({
+    appDoc: {
+      appFilesPath : "dev/public/src",
+      markdownOutputPath : "dev/public/docs/markdown-pages",
+      htmlOutputPath: "dev/public/docs/documentations",
+      htmlDocTemplatePath: "dev/public/docs",
+      srcExtension: ".less"
+
+    },
+    markdox: {
+      target: {
+        files: [
+        {
+            expand: true,                               // Enable dynamic expansion.
+            cwd: '<%= appDoc.appFilesPath %>',      // Src matches are relative to this path.
+            src: ['**/*<%= appDoc.srcExtension %>'],                        // Actual pattern(s) to match.
+            dest: '<%= appDoc.markdownOutputPath %>', // Destination path prefix.
+            ext: '.md'                                  // Dest filepaths will have this extension.
+          }
+          ]
+        }
+      },
+      markdown: {
+        all: {
+          files: [
+          {
+            expand: true,
+            cwd: '<%= appDoc.markdownOutputPath %>',
+            src: '**/*.md',
+            dest: '<%= appDoc.htmlOutputPath %>',
+            ext: '.htm'
+          }
+          ],
+          options: {
+            template: '<%= appDoc.htmlDocTemplatePath %>/template.html',
+            markdownOptions: {
+              gfm: true,
+              highlight: "auto",
+              codeLines: {
+                before: '<span>',
+                after: '</span>'
+              }
+            }
+          }
+        },
+        
+      },
+      concat: {
+        dist: {
+          src: ['<%= appDoc.markdownOutputPath %>/**/*.md'],
+          dest: '<%= appDoc.markdownOutputPath %>/All/all.md',
+        },
+      },
+      clean: {
+        htm: ["<%= appDoc.htmlOutputPath %>/**/*.htm","<%= appDoc.htmlOutputPath %>"],
+        md: ["<%= appDoc.markdownOutputPath %>/**/*.md"]
+    }
+  })
+
+  // Load the plugin that provides the "uglify" task.
+  
+  // Default task(s).
+  grunt.registerTask('default', ['markdox']);
+  grunt.registerTask('docs', ['clean', 'markdox', 'concat', 'markdown']);
+  grunt.registerTask('md', ['clean:md','markdox']);
+
+
 };
